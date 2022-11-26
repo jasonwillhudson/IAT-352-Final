@@ -5,12 +5,12 @@ function makeInput($label, $name, $type, $value = "")
 {
 
     strval($value);
-    //create a label
+    //create a label for the input
     echo "<div class='input-wrapper'><label>$label</label>";
 
-    //use text area if type is textarea
+    //display text area if type is textarea
     if ($type == "textarea")
         echo "<textarea name=$name>$value</textarea></div>";
-    else //use the type user entered
+    else //display the input with the type user chose
         echo "<input type=$type name=$name value=\"$value\"></input></div>";
 }
