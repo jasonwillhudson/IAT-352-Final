@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- 主机： localhost
--- 生成日期： 2022-11-28 15:09:40
--- 服务器版本： 10.4.21-MariaDB
--- PHP 版本： 8.0.10
+-- Host: 127.0.0.1
+-- Generation Time: Nov 30, 2022 at 02:08 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,30 +18,29 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 数据库： `Svap`
+-- Database: `svap`
 --
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
-  `admin_id` int(50) NOT NULL,
-  `first_name` varchar(50) NOT NULL,
-  `last_name` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL
+  `admin_id` int(10) NOT NULL,
+  `username` varchar(20) NOT NULL,
+  `password` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `collection`
+-- Table structure for table `collection`
 --
 
 CREATE TABLE `collection` (
-  `email` varchar(50) NOT NULL,
+  `collector_email` varchar(50) NOT NULL,
   `post_id` int(20) NOT NULL,
   `collection_id` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -49,56 +48,68 @@ CREATE TABLE `collection` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `comment`
+-- Table structure for table `comment`
 --
 
 CREATE TABLE `comment` (
-  `comment_text` varchar(100) NOT NULL,
+  `question` varchar(100) NOT NULL,
   `member_id` int(20) NOT NULL,
   `post_id` int(20) NOT NULL,
-  `comment_image` longblob DEFAULT NULL,
-  `comment_time` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
-  `comment_id` int(20) NOT NULL
+  `question_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `comment_id` int(11) NOT NULL,
+  `answer` varchar(100) NOT NULL,
+  `answer_time` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `member`
+-- Table structure for table `image_path`
+--
+
+CREATE TABLE `image_path` (
+  `email` varchar(50) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `image_path` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `member`
 --
 
 CREATE TABLE `member` (
   `email` varchar(50) NOT NULL,
-  `first_name` varchar(50) NOT NULL,
-  `last_name` varchar(50) NOT NULL,
-  `password` int(50) NOT NULL,
-  `member_id` int(10) NOT NULL,
+  `name` varchar(20) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `phone` int(20) NOT NULL,
-  `city` varchar(20) NOT NULL
+  `city` varchar(20) NOT NULL,
+  `isBanned` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `message`
+-- Table structure for table `message`
 --
 
 CREATE TABLE `message` (
-  `time_stamp` timestamp(6) NOT NULL DEFAULT current_timestamp(6) ON UPDATE current_timestamp(6),
+  `time_stamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
   `content` varchar(50) NOT NULL,
-  `member_id` int(20) NOT NULL,
-  `message_id` int(11) NOT NULL
+  `sender_email` varchar(50) NOT NULL,
+  `message_id` int(20) NOT NULL,
+  `receiver_email` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `post`
+-- Table structure for table `post`
 --
 
 CREATE TABLE `post` (
   `post_id` int(20) NOT NULL,
-  `member_id` int(20) NOT NULL,
   `username` varchar(20) NOT NULL,
   `title` varchar(50) NOT NULL,
   `description` text NOT NULL,
@@ -107,71 +118,108 @@ CREATE TABLE `post` (
   `email` varchar(50) NOT NULL,
   `category` varchar(50) NOT NULL,
   `city` varchar(30) NOT NULL,
-  `state_id` int(20) NOT NULL,
-  `sub_category_id` int(20) NOT NULL,
-  `post_image` longblob DEFAULT NULL,
-  `want_info` varchar(50) NOT NULL,
-  `want_title` varchar(50) NOT NULL
+  `isReported` tinyint(1) NOT NULL DEFAULT 0,
+  `isTraded` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `post_state`
+-- Table structure for table `want_to_trade`
 --
 
-CREATE TABLE `post_state` (
-  `isTraded` varchar(50) DEFAULT NULL,
-  `isReported` varchar(50) DEFAULT NULL,
-  `post_id` int(20) NOT NULL,
-  `state_id` int(20) NOT NULL
+CREATE TABLE `want_to_trade` (
+  `email` varchar(50) NOT NULL,
+  `post_id` int(11) NOT NULL,
+  `item_value` int(11) NOT NULL,
+  `category` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- 转储表的索引
+-- Indexes for dumped tables
 --
 
 --
--- 表的索引 `admin`
+-- Indexes for table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`);
 
 --
--- 表的索引 `collection`
+-- Indexes for table `collection`
 --
 ALTER TABLE `collection`
   ADD PRIMARY KEY (`collection_id`);
 
 --
--- 表的索引 `comment`
+-- Indexes for table `comment`
 --
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`comment_id`);
 
 --
--- 表的索引 `member`
+-- Indexes for table `image_path`
+--
+ALTER TABLE `image_path`
+  ADD PRIMARY KEY (`email`,`post_id`);
+
+--
+-- Indexes for table `member`
 --
 ALTER TABLE `member`
   ADD PRIMARY KEY (`email`);
 
 --
--- 表的索引 `message`
+-- Indexes for table `message`
 --
 ALTER TABLE `message`
   ADD PRIMARY KEY (`message_id`);
 
 --
--- 表的索引 `post`
+-- Indexes for table `post`
 --
 ALTER TABLE `post`
   ADD PRIMARY KEY (`post_id`);
 
 --
--- 表的索引 `post_state`
+-- Indexes for table `want_to_trade`
 --
-ALTER TABLE `post_state`
-  ADD PRIMARY KEY (`state_id`);
+ALTER TABLE `want_to_trade`
+  ADD PRIMARY KEY (`email`,`post_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `admin_id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `collection`
+--
+ALTER TABLE `collection`
+  MODIFY `collection_id` int(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `comment`
+--
+ALTER TABLE `comment`
+  MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `message`
+--
+ALTER TABLE `message`
+  MODIFY `message_id` int(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `post`
+--
+ALTER TABLE `post`
+  MODIFY `post_id` int(20) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
