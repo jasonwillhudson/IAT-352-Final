@@ -10,7 +10,7 @@ function makeInput($label, $name, $type, $value = "")
 
     //display text area if type is textarea
     if ($type == "textarea")
-        echo "<textarea name=$name>$value</textarea></div>";
+        echo "<textarea id=$name name=$name>$value</textarea></div>";
     else //display the input with the type user chose
-        echo "<input type=$type name=$name value=\"$value\"></input></div>";
+        echo "<input type=$type id=$name name=$name value=\"$value\"></input></div>";
 }

@@ -14,10 +14,10 @@ require "../components/elements.php";
         <?php
         //display the input field
         //makeInput($label, $name, $type, $value = "", $space = false)
+        echo "<p class = \"errorMssg\"></p>";
         makeInput("Email", "email", "text");
-        echo "</br>";
         makeInput("Password", "password", "password");
-        echo "</br>";
+
         ?>
 
         <div style="width: 100%; display: flex; align-items:center; justify-content: space-between;">
@@ -30,6 +30,7 @@ require "../components/elements.php";
     </form>
 </section>
 
+<script src="../js/loginProcess.js"></script>
 <?php
 require "../components/footer.php";
 ?>
