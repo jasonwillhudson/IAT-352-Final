@@ -27,8 +27,6 @@ require "../components/elements.php";
         makeInput("Value(CAD)", "value", "number");
         echo "<p class = \"errorMssg\"></p>";
 
-        makeInput("Trade With", "trade-category", "text");
-        echo "<p class = \"errorMssg\"></p>";
 
         ?>
 

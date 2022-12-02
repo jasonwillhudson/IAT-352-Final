@@ -1,7 +1,8 @@
-$("form#data").submit(function(e) {
+$("form").submit(function(e) {
     e.preventDefault();    
     var formData = new FormData(this);
 
+    console.log(formData);
     $.ajax({
         url: "../../server/formProcess.php",
         type: 'POST',
