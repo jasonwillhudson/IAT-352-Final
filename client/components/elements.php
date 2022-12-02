@@ -41,3 +41,18 @@ function createFilter($name, $value, $var = '')
 
    }
 }
+
+
+//create dropdown menu
+function createDropDown($label, $name, $var, $select)
+{
+   echo "<div class='input-wrapper'><label>$label</label>";
+   echo "<select name=$name>";
+   //create drop down options based on key and value in array
+   foreach ($var as $key => $value){
+      if(empty($select)) echo "<option value=\"$key\">$value</option>";
+      else if($select==$key) echo "<option value=\"$key\" selected=\"selected\">$value</option>";
+      else echo "<option value=\"$key\">$value</option>";
+   }
+   echo "</select></div>";
+}

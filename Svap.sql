@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 30, 2022 at 02:08 AM
+-- Generation Time: Dec 02, 2022 at 09:08 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -119,7 +119,8 @@ CREATE TABLE `post` (
   `category` varchar(50) NOT NULL,
   `city` varchar(30) NOT NULL,
   `isReported` tinyint(1) NOT NULL DEFAULT 0,
-  `isTraded` tinyint(1) NOT NULL DEFAULT 0
+  `isTraded` tinyint(1) NOT NULL DEFAULT 0,
+  `value` int(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -131,7 +132,6 @@ CREATE TABLE `post` (
 CREATE TABLE `want_to_trade` (
   `email` varchar(50) NOT NULL,
   `post_id` int(11) NOT NULL,
-  `item_value` int(11) NOT NULL,
   `category` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
