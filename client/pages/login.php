@@ -20,11 +20,10 @@ require "../components/elements.php";
 
         ?>
 
-        <div style="width: 100%; display: flex; align-items:center; justify-content: space-between;">
-            <input type="submit" name="login" value="Login">
-            <label>or</label>
-            <input type="submit" name="signup" value="Signup">
-        </div>
+
+        <input type="submit" name="login" value="Login">
+        <a href="register.php" style="float: right; margin-top: 20px;">Not a member yet?</a>
+
 
 
     </form>
@@ -33,4 +32,5 @@ require "../components/elements.php";
 <script src="../js/loginProcess.js"></script>
 <?php
 require "../components/footer.php";
+
 ?>

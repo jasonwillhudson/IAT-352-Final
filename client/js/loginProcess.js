@@ -24,6 +24,7 @@ $(document).ready(function () {
       });
 
       request.done(function (msg) {
+        if(msg == "success")    window.location.href = "../pages/register.php";
         $(".errorMssg").html(msg);
       });
 

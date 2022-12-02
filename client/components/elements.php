@@ -13,6 +13,7 @@ function makeInput($label, $name, $type, $value = "")
         echo "<textarea id=$name name=$name>$value</textarea></div>";
     else //display the input with the type user chose
         echo "<input type=$type id=$name name=$name value=\"$value\"></input></div>";
+        echo "</br>";
 }
 
 //Create filters for user to choose types of goods
