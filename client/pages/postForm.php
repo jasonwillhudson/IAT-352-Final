@@ -9,7 +9,7 @@ require "../components/elements.php";
 
     <form method="post" style="width: 100%; margin:auto; padding:25px;">
 
-        <h1>Create Account</h1>
+        <h1>Create A New Post</h1>
 
         <?php
         //display the input field
