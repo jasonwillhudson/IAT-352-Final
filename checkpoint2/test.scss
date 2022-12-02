@@ -1,0 +1,19 @@
+$color : red;
+
+a{
+    text-decoration:none;
+    color:blue;
+    font-weight:bold;
+    :hover{
+        color: $color;
+        text-decoration:underline;
+    }
+
+    img{
+        width:100%;
+    }
+
+    span{
+        font-style:italic;
+    }
+}
