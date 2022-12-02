@@ -1,13 +1,19 @@
+var imageArray = new DataTransfer();
+
 //Preview
 $("#fileInput").on("change", function(e) {
     var files = e.target.files;
     var filesLength = files.length;
+
+    if(filesLength>=5) $("#fileInput").css('display', 'none');
     for (var i = 0; i < filesLength; i++) {
         var f = files[i]
         var fileReader = new FileReader();
         fileReader.onload = (function(e) {
             var file = e.target;
-            var img = '<div class="img-wrap"><span id="deleteImage" class="delete-image text-2xl cursor-pointer" data-name="'+file.name+'">&times;</span><img class="rounded" src="'+e.target.result+'" ></div>';
+            var img = '<div class="img-wrap"><span id="deleteButton" data-name="'+file.name+'">&times;</span><img src="'+e.target.result+'" ></div>';
+            imageArray.items.add(f);
+            $("#fileInput")[0].files = imageArray.files;
             $('#thumb-output').append(img);
         });
         fileReader.readAsDataURL(f);
@@ -15,7 +21,7 @@ $("#fileInput").on("change", function(e) {
 });
 
 //Remove
-$(document).on('click','#deleteImage',function(){
+$(document).on('click','#deleteButton',function(){
     var pips = $('.img-wrap').toArray();
     var $selectedPip = $(this).parent('.img-wrap');
     var index = pips.indexOf($selectedPip[0]);
@@ -30,6 +36,8 @@ $(document).on('click','#deleteImage',function(){
     }
 
     $("#fileInput")[0].files = dt.files;
+
+    imageArray = dt.files;
 
     $selectedPip.remove();
 });

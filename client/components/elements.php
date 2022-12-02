@@ -50,9 +50,21 @@ function createDropDown($label, $name, $var, $select)
    echo "<select name=$name>";
    //create drop down options based on key and value in array
    foreach ($var as $key => $value){
-      if(empty($select)) echo "<option value=\"$key\">$value</option>";
-      else if($select==$key) echo "<option value=\"$key\" selected=\"selected\">$value</option>";
-      else echo "<option value=\"$key\">$value</option>";
+      if(empty($select)) echo "<option value=\"$value\">$key</option>";
+      else if($select==$value) echo "<option value=\"$value\" selected=\"selected\">$key</option>";
+      else echo "<option value=\"$value\">$key</option>";
    }
    echo "</select></div>";
+   echo "</br>";
+}
+
+//create check box
+function createCheckBoxes($name, $var)
+{
+   echo "<div style=\"display: flex; flex-wrap: wrap;\">";
+   //create drop down options based on key and value in array
+   foreach ($var as $key => $value){
+      echo "<div><input type='checkbox' style=\"margin: 12px;\" name=\"$name\" value=\"$value\">$key&nbsp;&nbsp;</div>";
+   }
+   echo "</div>";
 }
