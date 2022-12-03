@@ -4,7 +4,10 @@ $(document).ready(function () {
   // this function is called after the submit button is clicked inside the product-insert-form form.
   $("form").submit(function (event) {
 
+    //prevent default event
     event.preventDefault();
+
+    //create a object to store json data
     var data = $(this).serializeArray();
 
     //check if the inputs are empty
@@ -13,8 +16,6 @@ $(document).ready(function () {
     //if inputs are not empty
     else {
       data.push({ email: $("#email").val(), password: $("#password").val() });
-
-      console.log("data", data);
 
       // write and AJAX request to send the data to the server (loginProcess.php)
       var request = $.ajax({

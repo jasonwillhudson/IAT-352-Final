@@ -22,7 +22,7 @@ $stmt->bind_param('sssss', $_POST["name"], $_POST["email"], password_hash($_POST
 $stmt->execute();
 
 //redirect user to login page
-echo "sucess";
+echo "success";
 exit();
 
 

@@ -12,50 +12,57 @@ require "../components/elements.php";
         <h1>Create A New Post</h1>
 
         <?php
-        //display the input field
-        //makeInput($label, $name, $type, $value = "", $space = false)
 
-        makeInput("Title", "title", "text");
+        //display text input field
+        makeInput("Title", "title", "text", true);
         echo "<p class = \"errorMssg\"></p>";
 
-        makeInput("Description", "description", "textarea");
+        //display description input field
+        makeInput("Description", "description", "textarea", true);
         echo "<p class = \"errorMssg\"></p>";
 
+        //display category drop down menu
         $arr = array('TV' => 'tv', 'Casset' => 'casset', 'CD' => 'cd', 'DVD' => 'dvd', 'Blu-Ray' => 'blu-ray', 'Laser Disc' => 'laser-disc', 'Funko Pop' => 'funko-pop', 'Figure' => 'figure', 'Lego' => 'lego', 'Desktop' => 'desktop', 'Laptop' => 'laptop', 'Speaker' => 'speaker', 'Phone' => 'phone', 'Gaming Console' => 'game-console');
         createDropDown("Category", "category", $arr, ""); //drop down measurement
 
-        makeInput("Value(CAD)", "value", "number");
+        //display value input field
+        makeInput("Value(CAD)", "value", "number", true);
         echo "<p class = \"errorMssg\"></p>";
 
 
         ?>
 
-        <fieldset class="input-wrapper" style = "padding:15px;">
-            <legend style="padding: 5px; margin-left: 10px;">Want to Trade With</legend>
-            <?php createCheckBoxes('tradeCategory', $arr) ?>
-        </fieldset>
+        <!---------- Check Box---------->
+            <fieldset class="input-wrapper" style="padding:15px;">
+                <legend style="padding: 5px; margin-left: 10px;">Want to Trade With</legend>
+                <p id="checkErrMssg">please check at least one box</p>
+                <?php createCheckBoxes('tradeCategory', $arr) ?>
+            </fieldset>
 
-        </br>
+            </br>
 
-        <fieldset class="input-wrapper" style = "padding:15px;">
-            <legend style="padding: 5px; margin-left: 10px;">Upload Image</legend>
-            <input style= "margin-bottom: 25px;" type="file" id="fileInput" name="image[]" accept="image/*"/>
+            <!---------- Image Input---------->
+            <fieldset class="input-wrapper" style="padding:15px;">
+                <legend style="padding: 5px; margin-left: 10px;">Upload Image</legend>
+                <input style="margin-bottom: 25px;" type="file" id="fileInput" name="image[]" accept="image/*" required max-uploads = 2/>
 
-            <div id="thumb-output"></div>
-            <div id="showFiles">show files</div>
-        </fieldset>
+                <div id="thumb-output"></div>
+                <div id="showFiles">show files</div>
+            </fieldset>
 
-        </br>
+            </br>
 
-        <div class="input-wrapper">
-            <input style="width: 750px;" type="submit" name="post" value="Submit the Post">
-        </div>
+            <!---------- Submit Button---------->
+            <div class="input-wrapper">
+                <input style="width: 750px;" type="submit" name="post" value="Submit the Post">
+            </div>
 
 
     </form>
 </section>
 
 <script src="../js/formImageDisplay.js"></script>
+<script src="../js/formProcess.js"></script>
 <?php
 require "../components/footer.php";
 ?>

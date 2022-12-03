@@ -1,19 +1,19 @@
 <?php
 
 //Create a input filed and display on the page
-function makeInput($label, $name, $type, $value = "")
+function makeInput($label, $name, $type, $required = false, $value = "")
 {
 
-    strval($value);
-    //create a label for the input
-    echo "<div class='input-wrapper'><label>$label</label>";
+   strval($value);
+   //create a label for the input
+   echo "<div class='input-wrapper'><label>$label</label>";
 
-    //display text area if type is textarea
-    if ($type == "textarea")
-        echo "<textarea id=$name name=$name>$value</textarea></div>";
-    else //display the input with the type user chose
-        echo "<input type=$type id=$name name=$name value=\"$value\"></input></div>";
-        echo "</br>";
+   //display text area if type is textarea
+   if ($type == "textarea")
+      echo "<textarea id=$name name=$name " . ($required ? " required" : "") . ">$value</textarea></div>";
+   else //display the input with the type user chose
+      echo "<input type=$type id=$name name=$name value=\"$value\" " . ($required ? " required" : "") . "></input></div>";
+   echo "</br>";
 }
 
 //Create filters for user to choose types of goods
@@ -49,9 +49,9 @@ function createDropDown($label, $name, $var, $select)
    echo "<div class='input-wrapper'><label>$label</label>";
    echo "<select name=$name>";
    //create drop down options based on key and value in array
-   foreach ($var as $key => $value){
-      if(empty($select)) echo "<option value=\"$value\">$key</option>";
-      else if($select==$value) echo "<option value=\"$value\" selected=\"selected\">$key</option>";
+   foreach ($var as $key => $value) {
+      if (empty($select)) echo "<option value=\"$value\">$key</option>";
+      else if ($select == $value) echo "<option value=\"$value\" selected=\"selected\">$key</option>";
       else echo "<option value=\"$value\">$key</option>";
    }
    echo "</select></div>";
@@ -63,7 +63,7 @@ function createCheckBoxes($name, $var)
 {
    echo "<div style=\"display: flex; flex-wrap: wrap;\">";
    //create drop down options based on key and value in array
-   foreach ($var as $key => $value){
+   foreach ($var as $key => $value) {
       echo "<div><input type='checkbox' style=\"margin: 12px;\" name=\"$name\" value=\"$value\">$key&nbsp;&nbsp;</div>";
    }
    echo "</div>";
