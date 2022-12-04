@@ -15,11 +15,9 @@ require "../components/elements.php";
 
         //display text input field
         makeInput("Title", "title", "text", true);
-        echo "<p class = \"errorMssg\"></p>";
 
         //display description input field
-        makeInput("Description", "description", "textarea", true);
-        echo "<p class = \"errorMssg\"></p>";
+        makeInput("Description", "description", "textarea", true);;
 
         //display category drop down menu
         $arr = array('TV' => 'tv', 'Casset' => 'casset', 'CD' => 'cd', 'DVD' => 'dvd', 'Blu-Ray' => 'blu-ray', 'Laser Disc' => 'laser-disc', 'Funko Pop' => 'funko-pop', 'Figure' => 'figure', 'Lego' => 'lego', 'Desktop' => 'desktop', 'Laptop' => 'laptop', 'Speaker' => 'speaker', 'Phone' => 'phone', 'Gaming Console' => 'game-console');
@@ -27,7 +25,6 @@ require "../components/elements.php";
 
         //display value input field
         makeInput("Value(CAD)", "worthValue", "number", true);
-        echo "<p class = \"errorMssg\"></p>";
 
         ?>
 

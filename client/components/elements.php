@@ -8,13 +8,18 @@ function makeInput($label, $name, $type, $required = false, $value = "")
    //create a label for the input
    echo "<div class='input-wrapper'><label>$label</label>";
 
+   $requireOption = ($required ? " required  " : "");
+   $decimalOption = ($type == "number"? "  step=\".01\"  " : "");
    //display text area if type is textarea
    if ($type == "textarea")
       echo "<textarea id=\"$name\" name=\"$name\" " . ($required ? " required" : "") . ">$value</textarea></div>";
    else //display the input with the type user chose
-      echo "<input type=\"$type\" id=\"$name\" name=\"$name\" value=\"$value\" " . ($required ? " required" : "") . "></input></div>";
+      echo "<input type=\"$type\" id=\"$name\" name=\"$name\" value=\"$value\" " . $requireOption . $decimalOption . "></input></div>";
    echo "</br>";
 }
+
+
+
 
 //Create filters for user to choose types of goods
 function createFilter($name, $value, $var = '')
@@ -43,6 +48,9 @@ function createFilter($name, $value, $var = '')
 }
 
 
+
+
+
 //create dropdown menu
 function createDropDown($label, $name, $var, $select)
 {
@@ -57,6 +65,9 @@ function createDropDown($label, $name, $var, $select)
    echo "</select></div>";
    echo "</br>";
 }
+
+
+
 
 //create check box
 function createCheckBoxes($name, $var)
