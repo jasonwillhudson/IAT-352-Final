@@ -26,9 +26,8 @@ require "../components/elements.php";
         createDropDown("Category", "category", $arr, ""); //drop down measurement
 
         //display value input field
-        makeInput("Value(CAD)", "value", "number", true);
+        makeInput("Value(CAD)", "worthValue", "number", true);
         echo "<p class = \"errorMssg\"></p>";
-
 
         ?>
 
@@ -44,7 +43,7 @@ require "../components/elements.php";
             <!---------- Image Input---------->
             <fieldset class="input-wrapper" style="padding:15px;">
                 <legend style="padding: 5px; margin-left: 10px;">Upload Image</legend>
-                <input style="margin-bottom: 25px;" type="file" id="fileInput" name="image[]" accept="image/*" required max-uploads = 2/>
+                <input style="margin-bottom: 25px;" type="file" id="fileInput" name="image[]" accept="image/*" required/>
 
                 <div id="thumb-output"></div>
                 <div id="showFiles">show files</div>

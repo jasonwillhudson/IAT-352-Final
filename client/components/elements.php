@@ -10,9 +10,9 @@ function makeInput($label, $name, $type, $required = false, $value = "")
 
    //display text area if type is textarea
    if ($type == "textarea")
-      echo "<textarea id=$name name=$name " . ($required ? " required" : "") . ">$value</textarea></div>";
+      echo "<textarea id=\"$name\" name=\"$name\" " . ($required ? " required" : "") . ">$value</textarea></div>";
    else //display the input with the type user chose
-      echo "<input type=$type id=$name name=$name value=\"$value\" " . ($required ? " required" : "") . "></input></div>";
+      echo "<input type=\"$type\" id=\"$name\" name=\"$name\" value=\"$value\" " . ($required ? " required" : "") . "></input></div>";
    echo "</br>";
 }
 
@@ -32,12 +32,12 @@ function createFilter($name, $value, $var = '')
       } else {
          if ($ischecked || $var != $v) echo "<input type=\"checkbox\" name=$name value=$v>"; //if not checked or values of variables not equal
          else {
-            echo "<input type=\"checkbox\" name=$name value=$v checked>";
+            echo "<input type=\"checkbox\" name=\"$name\" value=\"$v\" checked>";
             $ischecked = true; //checked the element already
          }
       }
 
-      echo "<label for=$v>$v</label>"; //label for the radio button
+      echo "<label for=\"$v\">$v</label>"; //label for the radio button
 
    }
 }
@@ -47,7 +47,7 @@ function createFilter($name, $value, $var = '')
 function createDropDown($label, $name, $var, $select)
 {
    echo "<div class='input-wrapper'><label>$label</label>";
-   echo "<select name=$name>";
+   echo "<select name=\"$name\" id=\"$name\">";
    //create drop down options based on key and value in array
    foreach ($var as $key => $value) {
       if (empty($select)) echo "<option value=\"$value\">$key</option>";

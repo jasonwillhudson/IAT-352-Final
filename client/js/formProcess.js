@@ -1,38 +1,70 @@
 $(document).ready(function () {
+  //hide the error message of check box on start
   $("#checkErrMssg").hide();
+
+  //form submit action triggers the event
   $("form").submit(function (event) {
-    $("#checkErrMssg").hide();
-
+    //prevent default form submission
     event.preventDefault();
-    var form_data = new FormData();
 
-    // Read selected files
-    var totalfiles = $("#fileInput")[0].files.length;
-    for (var index = 0; index < totalfiles; index++) {
-      form_data.append("files[]", $("#fileInput")[0].files[index]);
-    }
-
+    //hide the error message of check box if at least one is chosen
     if (verifyCheckBox()) {
-      $.ajax({
-        url: "ajaxfile.php",
-        type: "post",
-        data: form_data,
-        dataType: "json",
-        contentType: false,
-        processData: false,
-        success: function (response) {
-          for (var index = 0; index < response.length; index++) {
-            var src = response[index];
-
-            // Add img element in <div id='preview'>
-            //$('#preview').append('<img src="'+src+'" width="200px;" height="200px">');
-          }
-        },
-      });
+      $("#checkErrMssg").hide();
     }
+    //terminate the function and show error message if checkbox not selected
+    else {
+      $("#checkErrMssg").show();
+      return false;
+    }
+
+    //store the form data and post it with the request
+    var data = new FormData();
+
+    // Add selected file to the form data
+    var totalfiles = $("#fileInput")[0].files.length;
+   
+    for (var index = 0; index < totalfiles; index++) {
+      data.append("files[]", $("#fileInput")[0].files[index]);
+    }
+
+        for(var pair of data.entries()) {
+        console.log(pair[0]+ ', '+ pair[1]['name']); 
+     }
+
+    // Add Checked box input to the form data
+    $.each($("input[name='tradeCategory']:checked"), function () {
+      data.append("tradeCategory[]", $(this).val());
+    });
+
+    //Add all other data
+    data.append("title", $("#title").val());
+    data.append("description", $("#description").val());
+    data.append("worthValue", $("#worthValue").val());
+    data.append("category", $("#category").val());
+
+
+    //AJAX
+    var request = $.ajax({
+      url: "../../server/formProcess.php",
+      type: "post",
+      data: data,
+      dataType: "json",
+      contentType: false,
+      processData: false,
+    });
+
+    request.done(function (msg) {
+        //if(msg == "success")    window.location.href = "../pages/register.php";
+        console.log(msg);
+      });
+
+      request.fail(function (msg) {
+        console.log("error" + JSON.stringify(msg));
+      });
   });
 });
 
+//Check if any of check box are selected
 function verifyCheckBox() {
   checked = $("input[type=checkbox]:checked").length;
 

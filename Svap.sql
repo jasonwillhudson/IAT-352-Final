@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 02, 2022 at 09:08 AM
+-- Generation Time: Dec 04, 2022 at 02:29 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -110,17 +110,14 @@ CREATE TABLE `message` (
 
 CREATE TABLE `post` (
   `post_id` int(20) NOT NULL,
-  `username` varchar(20) NOT NULL,
   `title` varchar(50) NOT NULL,
   `description` text NOT NULL,
-  `date` date NOT NULL,
-  `phone` int(20) NOT NULL,
+  `date` date NOT NULL DEFAULT current_timestamp(),
   `email` varchar(50) NOT NULL,
   `category` varchar(50) NOT NULL,
-  `city` varchar(30) NOT NULL,
   `isReported` tinyint(1) NOT NULL DEFAULT 0,
   `isTraded` tinyint(1) NOT NULL DEFAULT 0,
-  `value` int(20) NOT NULL
+  `value` decimal(20,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -132,7 +129,7 @@ CREATE TABLE `post` (
 CREATE TABLE `want_to_trade` (
   `email` varchar(50) NOT NULL,
   `post_id` int(11) NOT NULL,
-  `category` int(11) NOT NULL
+  `category` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -158,12 +155,6 @@ ALTER TABLE `comment`
   ADD PRIMARY KEY (`comment_id`);
 
 --
--- Indexes for table `image_path`
---
-ALTER TABLE `image_path`
-  ADD PRIMARY KEY (`email`,`post_id`);
-
---
 -- Indexes for table `member`
 --
 ALTER TABLE `member`
@@ -180,12 +171,6 @@ ALTER TABLE `message`
 --
 ALTER TABLE `post`
   ADD PRIMARY KEY (`post_id`);
-
---
--- Indexes for table `want_to_trade`
---
-ALTER TABLE `want_to_trade`
-  ADD PRIMARY KEY (`email`,`post_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
