@@ -22,14 +22,14 @@ $(document).ready(function () {
 
     // Add selected file to the form data
     var totalfiles = $("#fileInput")[0].files.length;
-   
+
     for (var index = 0; index < totalfiles; index++) {
       data.append("files[]", $("#fileInput")[0].files[index]);
     }
 
-        for(var pair of data.entries()) {
-        console.log(pair[0]+ ', '+ pair[1]['name']); 
-     }
+    for (var pair of data.entries()) {
+      console.log(pair[0] + ", " + pair[1]["name"]);
+    }
 
     // Add Checked box input to the form data
     $.each($("input[name='tradeCategory']:checked"), function () {
@@ -42,7 +42,6 @@ $(document).ready(function () {
     data.append("worthValue", $("#worthValue").val());
     data.append("category", $("#category").val());
 
-
     //AJAX
     var request = $.ajax({
       url: "../../server/formProcess.php",
@@ -54,22 +53,12 @@ $(document).ready(function () {
     });
 
     request.done(function (msg) {
-        //if(msg == "success")    window.location.href = "../pages/register.php";
-        console.log(msg);
-      });
+      //if(msg == "success")    window.location.href = "../pages/register.php";
+      console.log(msg);
+    });
 
-      request.fail(function (msg) {
-        console.log("error" + JSON.stringify(msg));
-      });
+    request.fail(function (msg) {
+      console.log("error" + JSON.stringify(msg));
+    });
   });
 });
-
-//Check if any of check box are selected
-function verifyCheckBox() {
-  checked = $("input[type=checkbox]:checked").length;
-
-  if (!checked) {
-    $("#checkErrMssg").show();
-    return false;
-  } else return true;
-}

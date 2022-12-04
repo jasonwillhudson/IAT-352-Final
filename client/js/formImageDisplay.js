@@ -1,6 +1,6 @@
 var imageArray = new DataTransfer(); //store all the files being uploaded
 
-//Preview
+//=========================== Preview========================//
 $("#fileInput").on("change", function (e) {
   var files = e.target.files;
   var filesLength = files.length;
@@ -39,7 +39,9 @@ $("#fileInput").on("change", function (e) {
   }
 });
 
-//Remove
+
+
+//==================================  Remove  ====================//
 $(document).on("click", "#deleteButton", function () {
   //init values
   var pips = $(".img-wrap").toArray();
@@ -67,7 +69,7 @@ $(document).on("click", "#deleteButton", function () {
   $selectedPip.remove();
 });
 
-//Check current files
+//=====================  Check current files  ==================//
 $(document).on("click", "#showFiles", function (event) {
   event.preventDefault();
   var data = $("#fileInput")[0].files; //this file data

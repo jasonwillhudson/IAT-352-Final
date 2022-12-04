@@ -116,3 +116,4 @@ function storeImage($postID)
     //return the array of file path
     return $files_arr;
 }
+
