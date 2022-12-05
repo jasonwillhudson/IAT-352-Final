@@ -1,5 +1,5 @@
 <?php
-include_once('included_functions.php');
+include_once('../components/included_functions.php');
 
 $productCode = !empty($_POST['productCode']) ? $_POST['productCode'] : "";
 

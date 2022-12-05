@@ -1,5 +1,5 @@
 <?php
-include('included_functions.php');
+include('../components/included_functions.php');
 no_SSL();
 
 $code = trim($_GET['productCode']);
@@ -14,7 +14,7 @@ $stmt->bind_param('s',$code);
 $stmt->execute();
 $stmt->bind_result($prCode,$prName,$prLine,$prScale,$prVendor,$prDesc,$prQ,$prPrice,$MSRP,$image);
 
-include('header.php');
+include('../components/header.php');
 
 if($stmt->fetch()) {
 	echo "<h3>$prName</h3>\n";

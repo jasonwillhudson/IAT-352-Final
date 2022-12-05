@@ -1,5 +1,5 @@
 <?php
-include('included_functions.php');
+include('../components/included_functions.php');
 // no_SSL();
 // $db =  connectToDB('localhost', 'root', '', 'classicmodels');
 

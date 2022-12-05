@@ -1,5 +1,5 @@
 <?php
-include_once('included_functions.php');
+include_once('../components/included_functions.php');
 
 $message = "";
 if (!empty($_GET['productCode']) && !empty($_SESSION['valid_user'])) {

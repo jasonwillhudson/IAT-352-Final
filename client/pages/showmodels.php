@@ -1,5 +1,5 @@
 <?php
-include('included_functions.php');
+include('../components/included_functions.php');
 no_SSL();
 
 
@@ -13,7 +13,7 @@ function format_model_name_as_link($id,$name,$page) {
 	echo "<a href=\"$page?productCode=$id\">$name</a>";
 	}
 
-include('header.php');
+include('../components/header.php');
 
 echo "<h2>All Items</h2>";
 
@@ -26,7 +26,7 @@ while ($row = $res->fetch_row()) {
 };
 echo "</ul>";
 
-include('footer.php');
+include('../components/footer.php');
 $res->free_result();
 $db->close();
 ?>

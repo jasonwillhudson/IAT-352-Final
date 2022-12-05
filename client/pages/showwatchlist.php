@@ -1,5 +1,5 @@
 <?php
-include_once('included_functions.php');
+include_once('../components/included_functions.php');
 no_SSL();
 
 if(!isset($_SESSION['valid_user'])) {
@@ -24,7 +24,7 @@ function format_watchlist_action_link($id,$name,$page) {
 	echo "<a class=\"action\" href=\"$page\">$name</a>";
 	}
 
-include_once('header.php');
+include_once('../components/header.php');
 
 if (isset($message)) echo "<p>$message</p>";
 
@@ -42,7 +42,7 @@ echo "</ul>\n";
 echo "<button type=\"button\" formaction=\"removefromwatchlist.php\">Remove Selected</button>";
 
 echo "<p id=\"msg\"></p>\n";
-include_once('footer.php');
+include_once('../components/footer.php');
 
 $res->free_result();
 $db->close();
