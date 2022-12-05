@@ -48,7 +48,7 @@ $(document).ready(function () {
       url: "../../server/formProcess.php",
       type: "post",
       data: data,
-      dataType: "json",
+      //dataType: "json",
       contentType: false,
       processData: false,
     });
@@ -59,7 +59,7 @@ $(document).ready(function () {
       });
 
       request.fail(function (msg) {
-        console.log("error" + JSON.stringify(msg));
+        console.log("error" + msg);
       });
   });
 });
