@@ -9,7 +9,7 @@ function makeInput($label, $name, $type, $required = false, $value = "")
    echo "<div class='input-wrapper'><label>$label</label>";
 
    $requireOption = ($required ? " required  " : "");
-   $decimalOption = ($type == "number"? "  step=\".01\"  " : "");
+   $decimalOption = ($type == "number" ? "  step=\".01\"  " : "");
    //display text area if type is textarea
    if ($type == "textarea")
       echo "<textarea id=\"$name\" name=\"$name\" " . ($required ? " required" : "") . ">$value</textarea></div>";
@@ -78,4 +78,34 @@ function createCheckBoxes($name, $var)
       echo "<div><input type='checkbox' style=\"margin: 12px;\" name=\"$name\" value=\"$value\">$key&nbsp;&nbsp;</div>";
    }
    echo "</div>";
+}
+
+
+//initialize the web
+function initialize($isLoginRequired, $requireHttps = false)
+{
+
+   session_start();
+
+   //If this page is for member only, direct user to login page if user not log in
+   if ($isLoginRequired && empty($_SESSION['email'])) {
+
+      //store the url before direct to login page
+      $_SESSION['url'] = $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"];
+      header("location: login.php");
+      return false;
+
+   }
+   
+   //remove url variable if user already login
+   if(!empty($_SESSION['email'])) $_SESSION['url'] = "";
+
+   //Direct to http or https 
+   if ($requireHttps && $_SERVER["HTTPS"] != "on") {
+      header("Location: https://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
+      return false;
+   } else if (!$requireHttps && !empty($_SERVER["HTTPS"])) {
+      header("Location: http://" . $_SERVER["HTTP_HOST"] . $_SERVER["REQUEST_URI"]);
+      return false;
+   } else return true;
 }

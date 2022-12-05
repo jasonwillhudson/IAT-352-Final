@@ -1,8 +1,12 @@
 <?php
-require "../components/header.php";
-
 //import web elements generation helper
 require "../components/elements.php";
+
+//initialize the page (detect login status and https application, and redirect)
+if(!initialize(true, false)) exit();
+
+//import header elements
+require "../components/header.php";
 ?>
 
 <section style="display:flex; flex-direction: column; justify-content:center;">

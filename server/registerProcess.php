@@ -18,7 +18,9 @@ VALUES (?,?,?,?,?);";
 
 //send the query to database, execute and then get the result
 $stmt = $db->prepare($query);
-$stmt->bind_param('sssss', $_POST["name"], $_POST["email"], password_hash($_POST["password"], PASSWORD_DEFAULT), $_POST["city"], $_POST["phone"]);
+//hash the password
+$hashedPassword =  password_hash($_POST["password"], PASSWORD_DEFAULT);
+$stmt->bind_param('sssss', $_POST["name"], $_POST["email"],$hashedPassword, $_POST["city"], $_POST["phone"]);
 $stmt->execute();
 
 //redirect user to login page
