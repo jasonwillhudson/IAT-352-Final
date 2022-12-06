@@ -1,9 +1,16 @@
 <?php
+
+session_start();
+
+//redirect to main page if user already log in
+//if(!empty($_SESSION['email'])) header();
+
 //import web elements generation helper
 require "../components/elements.php";
 
 //initialize the page (detect login status and https application, and redirect)
 if(!initialize(false, true)) exit();
+
 
 //import header elements
 require "../components/header.php";

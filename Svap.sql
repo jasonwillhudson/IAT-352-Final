@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2022 at 02:29 PM
+-- Generation Time: Dec 06, 2022 at 03:16 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -55,7 +55,7 @@ CREATE TABLE `comment` (
   `question` varchar(100) NOT NULL,
   `member_id` int(20) NOT NULL,
   `post_id` int(20) NOT NULL,
-  `question_time` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `question_time` timestamp NOT NULL DEFAULT current_timestamp(),
   `comment_id` int(11) NOT NULL,
   `answer` varchar(100) NOT NULL,
   `answer_time` timestamp NULL DEFAULT NULL
@@ -95,11 +95,12 @@ CREATE TABLE `member` (
 --
 
 CREATE TABLE `message` (
-  `time_stamp` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `time_stamp` timestamp NOT NULL DEFAULT current_timestamp(),
   `content` varchar(50) NOT NULL,
   `sender_email` varchar(50) NOT NULL,
   `message_id` int(20) NOT NULL,
-  `receiver_email` varchar(50) NOT NULL
+  `receiver_email` varchar(50) NOT NULL,
+  `status` varchar(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -112,7 +113,7 @@ CREATE TABLE `post` (
   `post_id` int(20) NOT NULL,
   `title` varchar(50) NOT NULL,
   `description` text NOT NULL,
-  `date` date NOT NULL DEFAULT current_timestamp(),
+  `date` timestamp NOT NULL DEFAULT current_timestamp(),
   `email` varchar(50) NOT NULL,
   `category` varchar(50) NOT NULL,
   `isReported` tinyint(1) NOT NULL DEFAULT 0,
