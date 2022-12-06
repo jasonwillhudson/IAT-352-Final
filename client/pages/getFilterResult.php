@@ -1,7 +1,7 @@
 
 
 <?php
-include('included_functions.php');
+include('../components/included_functions.php');
 // $db =  connectToDB('localhost', 'root', '', 'classicmodels');
 
 

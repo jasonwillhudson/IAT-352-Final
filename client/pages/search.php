@@ -1,58 +1,76 @@
 <style>
-.container{
-	display:flex;
-}
+	.container {
+		display: flex;
+	}
 
-.filter{
-	width: 300px;
-	border-right:1px solid #eee;
-	height: 100vh;
-}
+	.filter {
+		width: 300px;
+		border-right: 1px solid #eee;
+		height: 100vh;
+		font-size: 10pt;
+		min-width: 290px;
+		padding: 0 0.5rem;
+	}
 
-.result{
-	padding:0 1rem;
-}
+	.result {
+		padding: 0 1rem;
+	}
+
+	.searchBar {
+		margin: 0.2rem 0;
+	}
+
+	.products{
+		display:flex;
+		flex-wrap: wrap;
+		gap:1rem;
+		font-size:11pt;
+	}
+
+	.products img{
+		width:100%;
+		border-radius:20px;
+	}
+
+	.products>div{
+		flex: 1 1 15%;
+		max-width:16rem;
+		border:1px solid #ddd;
+		border-radius:20px;
+		padding:1rem;
+		background:#f6f6f6;
+	}
 </style>
 <?php
-include('included_functions.php');
+include('../components/included_functions.php');
 no_SSL();
 
 
-include('header.php');
+include('../components/header.php');
 
-$sql = "SELECT DISTINCT productLine FROM products";
-$res = $db->query($sql);
-
-while ($row = $res->fetch_assoc()){
-
-}
-
-echo "Search: <input type='text' name='search' class='searchContent'>";
-echo " <button id='searchBtn'>GO</button>";
+echo "<form action='search.php' method='get' class='searchBar'>";
+echo "Search: <input type='text' name='search' class='search' size = '40' value=''>";
+echo "<input type='submit' id='searchBtn' value='GO'/>";
+echo "</form>";
 
 echo "<div class='container'>";
-echo "<div class='filter'>";
-echo "<h2>Search Filter</h2>";
+echo "<div class ='filter'>";
+echo "<div id='displayFilter'>";
 
-$sql = "SELECT DISTINCT productLine FROM products";
-$res = $db->query($sql);
-
-echo "<h4>Product Line:</h4>";
-while ($row = $res->fetch_assoc()){
-	echo "<input type='checkbox' class='productLine' value='". $row["productLine"] ."'> " . $row["productLine"] . "<br>"; 
-}
-
-echo "<h4>Price range</h4>";
-echo "<p>Price: <input type='text' class='priceFrom' placeholder='min' size='10'> ";
-echo "<input type='text' class='priceTo' placeholder='max' size='10'>\n";
-echo " <button id='priceFilterBtn'>GO</button></p>";
+echo "</div>";
 echo "</div>";
 echo "<div class='result'>";
-echo "<h2>Search result</h2>";
-echo "<div id='result'></div>";
-echo "</div>";
-echo "</div>";
-include('footer.php');
+echo "<div id ='displayResult'>";
 
+echo "</div>";
+echo "</div>";
+echo "</div>";
+
+include('../components/footer.php');
 ?>
+
+<!-- <script>
+	console.log("sdsdfdsf");
+	document.querySelector("#searchBtn").click()
+</script> -->
 

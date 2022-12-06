@@ -15,7 +15,7 @@ function require_SSL() {
 }
 
 session_start();
-$db =  connectToDB('localhost', 'root', '', 'classicmodels');
+$db =  connectToDB('localhost', 'root', '', 'svap');
 
 
 
