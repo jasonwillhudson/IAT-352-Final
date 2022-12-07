@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 
 //import web elements generation helper
 include_once "../components/elements.php";
@@ -39,7 +39,7 @@ $currentSession = "";
             //prevent showing log in user as a contact 
             if($user['sender_email'] == $_SESSION['email']) continue;
 
-            
+
             //display the contact side panel elements
             echo '<li id="' . $user['sender_email'] . '" class="contact '.($currentSession == $user['sender_email'] ? "active" : "").'" data-touserid="' . $user['sender_email'] . '" data-tousername="' . $user['sender_email'] . '">';
 

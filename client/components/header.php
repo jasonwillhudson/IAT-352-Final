@@ -1,6 +1,6 @@
 
 
-<!-- <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -12,10 +12,10 @@
   <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 </head>
 
-<body> -->
+<body> 
 
 
-
+<!-------------
 <html>
 
 <head>
@@ -33,7 +33,7 @@
 	</style>
 	<script src="../jquery-3.6.1.js"></script>
 	<link rel="stylesheet" href="../css/main.css">
-	<!-- <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script> -->
+	
 	<script src="../js/lec9.js"></script>
 
 </head>
@@ -47,29 +47,29 @@
 			<td style="font-family:verdana;font-size:24px;color:white;">
 				<strong><a class="nav" href="showmodels.php">Items</a> |
 					<a class="nav" href="showwatchlist.php">Likes</a> |
-					<?php
+					<?php /*
 					if (isset($_SESSION['valid_user']))
 						echo "<a class=\"nav\"  href=\"sign-out.php\">Sign out</a>";
 					else
 						echo "<a class=\"nav\" href=\"sign-in.php\">Sign In</a>";
-					?>
+					*/?>
 			</td>
-			<td style="text-align:right">
+			<td style="text-align:right">--->
 				<!-- <?php
-				
+				/*
 				if (basename($_SERVER['PHP_SELF']) != "../pages/search.php"){
 					print_r("<form action='../pages/search.php' method='get' class='searchBar'>
 					Search: <input type='text' name='search' class='searchContent' size = '40'>
 					<input type='submit' id='searchBtn1' value='GO'/>
 					</form>");
 				}
-				
-				?> -->
+				*/
+				?> 
 				<a class="nav" href="../pages/search.php">Search</a>
 			</td>
 		<tr bgcolor="FFFFFF">
 	</table>
-				<!--header ends here-->
+		--------->		<!--header ends here-->
 
 
 

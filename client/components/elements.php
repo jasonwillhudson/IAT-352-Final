@@ -85,7 +85,6 @@ function createCheckBoxes($name, $var)
 function initialize($isLoginRequired, $requireHttps = false)
 {
 
-   session_start();
 
    //If this page is for member only, direct user to login page if user not log in
    if ($isLoginRequired && empty($_SESSION['email'])) {

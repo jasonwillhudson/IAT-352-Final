@@ -1,4 +1,8 @@
 <?php
+
+session_start();
+
+
 //import web elements generation helper
 require "../components/elements.php";
 
