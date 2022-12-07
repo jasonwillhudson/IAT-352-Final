@@ -6,6 +6,7 @@ include_once('helper/db.php');
 //connect to database
 $db =  connectToDB('localhost', 'root', '', 'svap');
 
+
 //if the user already existed, return a message and end the script
 if (isUserExisted($db, $_POST["email"])) {
     echo "email is already existed, try something else";
@@ -22,9 +23,15 @@ $stmt = $db->prepare($query);
 $hashedPassword =  password_hash($_POST["password"], PASSWORD_DEFAULT);
 $stmt->bind_param('sssss', $_POST["name"], $_POST["email"],$hashedPassword, $_POST["city"], $_POST["phone"]);
 $stmt->execute();
+// echo mysqli_stmt_error($stmt);
+
+// echo $query;
+// redirect_to('login.php');
+
 
 //redirect user to login page
 echo "success";
+// echo $_POST["email"];
 exit();
 
 
