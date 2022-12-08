@@ -47,10 +47,12 @@ $(document).ready(function () {
         method: "post",
         data: data,
       });
+      
 
       request.done(function (msg) {
         if (msg == "success") window.location.href = "../pages/login.php";
         else $(".errorMssg").html(msg);
+        // console.log(msg);
       });
 
       request.fail(function (msg) {

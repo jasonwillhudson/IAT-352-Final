@@ -9,10 +9,10 @@ $paraType = "";
 
 if (!empty($_GET["search"])){
     $wordsArr = explode(" ", $_GET["search"]);
-    $sql = "SELECT * FROM products WHERE (";
+    $sql = "SELECT * FROM post WHERE (";
     $contentArray  = [];
     foreach ($wordsArr as $word){
-        $contentArray[] = "productName like ? OR productDescription like ?"; // OR productDescription like ?
+        $contentArray[] = "title like ? OR description like ?"; // OR productDescription like ?
         $parasContent[] = "%" . $word . "%";
         $parasContent[] = "%" . $word . "%";
         $paraType .= "ss";
@@ -24,29 +24,29 @@ if (!empty($_GET["search"])){
 }
 
 if (!empty($_GET["priceFrom"]) && !empty($_GET["priceTo"])){
-    $sql .= " AND buyPrice BETWEEN ? AND ?";
+    $sql .= " AND value BETWEEN ? AND ?";
 
     $parasContent[] = $_GET["priceFrom"];
     $parasContent[] = $_GET["priceTo"];
     $paraType .= "dd";
 }
 
-if (!empty($_GET["productLine"])){
+if (!empty($_GET["category"])){
     $sql .= " AND (";
     $lines = [];
-    foreach ($_GET["productLine"] as $line){
-        $lines[] = "productLine = ?";
+    foreach ($_GET["category"] as $line){
+        $lines[] = "category = ?";
         $parasContent[] = $line;
         $paraType .= "s";
     }
     $sql .= implode(" OR ", $lines) . ")";
 }
 
-if (!empty($_GET["productVendor"])){
+if (!empty($_GET["brand"])){
     $sql .= " AND (";
     $lines = [];
-    foreach ($_GET["productVendor"] as $line){
-        $lines[] = "productVendor = ?";
+    foreach ($_GET["brand"] as $line){
+        $lines[] = "brand = ?";
         $parasContent[] = $line;
         $paraType .= "s";
     }
@@ -74,11 +74,11 @@ while ($row = $res->fetch_assoc()){
         $message .= "<img src='images/null.png' alt='' />";
     }
     
-    $message .= "<h3><a href='modeldetails.php?productCode=". $row["productCode"] ."'>". $row["productName"] ."</a></h3>";
-    $message .= "<p>". subStr($row["productDescription"], 0, 100) ." ......</p>";
-    $message .= "<p><b>Item Type:</b> ". $row["productLine"] ."</p>";
-    $message .= "<p><b>Original Price Cost:</b> $". $row["buyPrice"] ."</p>";
-    $message .= "<p><b>Item Brand:</b> ". $row["productVendor"] ."</p>";
+    $message .= "<h3><a href='modeldetails.php?post_id=". $row["post_id"] ."'>". $row["title"] ."</a></h3>";
+    $message .= "<p>". subStr($row["description"], 0, 100) ." ......</p>";
+    $message .= "<p><b>Item Type:</b> ". $row["category"] ."</p>";
+    $message .= "<p><b>Original Price Cost:</b> $". $row["value"] ."</p>";
+    $message .= "<p><b>Item Brand:</b> ". $row["brand"] ."</p>";
     $message .= "</div>";
 }
 

@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Dec 06, 2022 at 03:16 PM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
+-- 主机： localhost
+-- 生成日期： 2022-12-07 09:47:37
+-- 服务器版本： 10.4.21-MariaDB
+-- PHP 版本： 8.0.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `svap`
+-- 数据库： `svap`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- 表的结构 `admin`
 --
 
 CREATE TABLE `admin` (
@@ -36,7 +36,7 @@ CREATE TABLE `admin` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `collection`
+-- 表的结构 `collection`
 --
 
 CREATE TABLE `collection` (
@@ -48,7 +48,7 @@ CREATE TABLE `collection` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comment`
+-- 表的结构 `comment`
 --
 
 CREATE TABLE `comment` (
@@ -64,7 +64,7 @@ CREATE TABLE `comment` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `image_path`
+-- 表的结构 `image_path`
 --
 
 CREATE TABLE `image_path` (
@@ -76,14 +76,14 @@ CREATE TABLE `image_path` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `member`
+-- 表的结构 `member`
 --
 
 CREATE TABLE `member` (
   `email` varchar(50) NOT NULL,
   `name` varchar(20) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `phone` int(20) NOT NULL,
+  `phone` varchar(20) NOT NULL,
   `city` varchar(20) NOT NULL,
   `isBanned` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -91,7 +91,7 @@ CREATE TABLE `member` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `message`
+-- 表的结构 `message`
 --
 
 CREATE TABLE `message` (
@@ -106,7 +106,7 @@ CREATE TABLE `message` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `post`
+-- 表的结构 `post`
 --
 
 CREATE TABLE `post` (
@@ -124,7 +124,7 @@ CREATE TABLE `post` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `want_to_trade`
+-- 表的结构 `want_to_trade`
 --
 
 CREATE TABLE `want_to_trade` (
@@ -134,75 +134,75 @@ CREATE TABLE `want_to_trade` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Indexes for dumped tables
+-- 转储表的索引
 --
 
 --
--- Indexes for table `admin`
+-- 表的索引 `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`admin_id`);
 
 --
--- Indexes for table `collection`
+-- 表的索引 `collection`
 --
 ALTER TABLE `collection`
   ADD PRIMARY KEY (`collection_id`);
 
 --
--- Indexes for table `comment`
+-- 表的索引 `comment`
 --
 ALTER TABLE `comment`
   ADD PRIMARY KEY (`comment_id`);
 
 --
--- Indexes for table `member`
+-- 表的索引 `member`
 --
 ALTER TABLE `member`
   ADD PRIMARY KEY (`email`);
 
 --
--- Indexes for table `message`
+-- 表的索引 `message`
 --
 ALTER TABLE `message`
   ADD PRIMARY KEY (`message_id`);
 
 --
--- Indexes for table `post`
+-- 表的索引 `post`
 --
 ALTER TABLE `post`
   ADD PRIMARY KEY (`post_id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- 在导出的表使用AUTO_INCREMENT
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- 使用表AUTO_INCREMENT `admin`
 --
 ALTER TABLE `admin`
   MODIFY `admin_id` int(10) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `collection`
+-- 使用表AUTO_INCREMENT `collection`
 --
 ALTER TABLE `collection`
   MODIFY `collection_id` int(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `comment`
+-- 使用表AUTO_INCREMENT `comment`
 --
 ALTER TABLE `comment`
   MODIFY `comment_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `message`
+-- 使用表AUTO_INCREMENT `message`
 --
 ALTER TABLE `message`
   MODIFY `message_id` int(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `post`
+-- 使用表AUTO_INCREMENT `post`
 --
 ALTER TABLE `post`
   MODIFY `post_id` int(20) NOT NULL AUTO_INCREMENT;

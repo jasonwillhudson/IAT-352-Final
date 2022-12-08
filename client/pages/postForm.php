@@ -28,7 +28,7 @@ require "../components/header.php";
         makeInput("Description", "description", "textarea", true);;
 
         //display category drop down menu
-        $arr = array('TV' => 'tv', 'Casset' => 'casset', 'CD' => 'cd', 'DVD' => 'dvd', 'Blu-Ray' => 'blu-ray', 'Laser Disc' => 'laser-disc', 'Funko Pop' => 'funko-pop', 'Figure' => 'figure', 'Lego' => 'lego', 'Desktop' => 'desktop', 'Laptop' => 'laptop', 'Speaker' => 'speaker', 'Phone' => 'phone', 'Gaming Console' => 'game-console');
+        $arr = array('TV' => 'tv', 'Casset' => 'casset', 'Collectible' => 'collectible','CD' => 'cd', 'DVD' => 'dvd', 'Blu-Ray' => 'blu-ray', 'Laser Disc' => 'laser-disc', 'Funko Pop' => 'funko-pop', 'Figure' => 'figure', 'Lego' => 'lego', 'Desktop' => 'desktop', 'Laptop' => 'laptop', 'Speaker' => 'speaker', 'Phone' => 'phone', 'Gaming Console' => 'game-console');
         createDropDown("Category", "category", $arr, ""); //drop down measurement
 
         //display value input field

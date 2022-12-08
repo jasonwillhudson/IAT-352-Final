@@ -16,10 +16,12 @@ require "../components/header.php";
     <form method="post" style="width: 300px; margin:auto;">
 
         <h1>Create Account</h1>
+       
 
         <?php
+         
         //display the input field
-        //makeInput($label, $name, $type, $value = "", $space = false)
+        // makeInput($label, $name, $type, $value = "", $space = false);
         echo "<p class = \"errorMssg\"></p>";
         makeInput("Name", "name", "text");
         makeInput("Email", "email", "text");

@@ -54,7 +54,7 @@ $(document).ready(function () {
     });
 
     request.done(function (msg) {
-        //if(msg == "success")    window.location.href = "../pages/register.php";
+        if(msg == "success")    window.location.href = "../pages/showmodels.php";
         console.log(msg);
       });
 

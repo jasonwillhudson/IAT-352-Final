@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 
 // this line refers to the code that has db setup in it
 include_once('helper/db.php');
@@ -8,7 +8,7 @@ include_once('helper/db.php');
 $db =  connectToDB('localhost', 'root', '', 'svap');
 
 //user's email address
-$email = "jasonwillhudson@gmail.com";
+$email = $_SESSION["email"];
 
 
 
@@ -47,6 +47,7 @@ foreach ($path as $image_path) {
     $stmt = $db->prepare($query);
     $stmt->bind_param('sss', $email, $post_id, $image_path);
     $stmt->execute();
+
 }
 
 
@@ -82,7 +83,8 @@ function storeImage($postID)
     $countfiles = count($_FILES['files']['name']);
 
     //use the user email and post id as the folder name
-    $folderName = "jasonwillhudson@gmail.com" . "/" . $postID;
+    $folderName = $_SESSION["email"] . "/" . $postID;
+
 
     // Upload Location
     $upload_location = "imgStorage/" . $folderName;

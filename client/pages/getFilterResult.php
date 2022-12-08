@@ -11,16 +11,16 @@ $paraType = "";
 if (!empty($_GET["search"])){
    
     $wordsArr = explode(" ", $_GET["search"]);
-    $sql = "SELECT DISTINCT productLine, count(productLine) as n FROM products WHERE (";
+    $sql = "SELECT DISTINCT category, count(category) as n FROM post WHERE (";
     $contentArray  = [];
     foreach ($wordsArr as $word){
-        $contentArray[] = "productName like ? OR productDescription like ?"; // OR productDescription like ?
+        $contentArray[] = "title like ? OR description like ?"; // OR productDescription like ?
         $parasContent[] = "%" . $word . "%";
         $parasContent[] = "%" . $word . "%";
         $paraType .= "ss";
     }
     $sql .= implode(" OR ", $contentArray) . ")";
-    $sql .= " GROUP BY productLine";
+    $sql .= " GROUP BY category";
     
     // $sql = "SELECT DISTINCT productLine FROM products WHERE productName like ? OR productDescription like ?";
     // $parasContent[] = "%" . $_GET["search"] . "%";
@@ -38,7 +38,7 @@ if (!empty($_GET["search"])){
     echo "<div style='border:1px solid #eee; padding:0.5rem'>";
     echo "<h4>Item Type:</h4>";
     while ($row = $res->fetch_assoc()){
-        echo "<input type='checkbox' class='productLine' value='". $row["productLine"] ."'> " . $row["productLine"] . " (" . $row["n"] . ")<br>"; 
+        echo "<input type='checkbox' class='productLine' value='". $row["category"] ."'> " . $row["category"] . " (" . $row["n"] . ")<br>"; 
     }
     echo "</div>";
 
@@ -49,18 +49,18 @@ if (!empty($_GET["search"])){
     echo " <button id='priceFilterBtn'>GO</button></p>";
     echo "</div>";
 
-    $sql = "SELECT productVendor, count(productVendor) as n FROM products WHERE (";
+    $sql = "SELECT brand, count(brand) as n FROM post WHERE (";
     $contentArray  = [];
     unset($parasContent);
     $paraType = "";
     foreach ($wordsArr as $word){
-        $contentArray[] = "productName like ? OR productDescription like ?"; // OR productDescription like ?
+        $contentArray[] = "title like ? OR description like ?"; // OR productDescription like ?
         $parasContent[] = "%" . $word . "%";
         $parasContent[] = "%" . $word . "%";
         $paraType .= "ss";
     }
     $sql .= implode(" OR ", $contentArray) . ")";
-    $sql .= " GROUP BY productVendor";
+    $sql .= " GROUP BY brand";
     
 
     $stmt = $db->prepare($sql);
@@ -71,7 +71,7 @@ if (!empty($_GET["search"])){
     echo "<div style='border:1px solid #eee; padding:0.5rem'>";
     echo "<h4>Item Brand:</h4>";
     while ($row = $res->fetch_assoc()){
-        echo "<input type='checkbox' class='productVendor' value='". $row["productVendor"] ."'> " . $row["productVendor"] . " (" . $row["n"] . ")<br>"; 
+        echo "<input type='checkbox' class='productVendor' value='". $row["brand"] ."'> " . $row["brand"] . " (" . $row["n"] . ")<br>"; 
     }
     echo "</div>";
 

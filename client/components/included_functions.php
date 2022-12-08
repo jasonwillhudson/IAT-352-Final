@@ -66,7 +66,7 @@ function is_logged_in() {
 function is_in_watchlist($code) {
 	global $db;
 	if (isset($_SESSION['valid_user'])) {
-		$query = "SELECT COUNT(*) FROM watchlist WHERE productCode=? AND email=?";
+		$query = "SELECT COUNT(*) FROM collection WHERE post_id=? AND collector_email=?";
 		$stmt = $db->prepare($query);
 		$stmt->bind_param('ss',$code, $_SESSION['valid_user']);
 		$stmt->execute();

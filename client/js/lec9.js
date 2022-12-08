@@ -85,8 +85,8 @@ $("document").ready(function() {
 		});
 	});
 
-	$("#displayFilter").on("mouseenter", ".productLine", function(){
-		$(".productLine").on("click",
+	$("#displayFilter").on("mouseenter", ".category", function(){
+		$(".category").on("click",
 		function (event){
 			var filterConditionJSON = createFilterCondition();
 			getSearchResult(filterConditionJSON);
@@ -94,8 +94,8 @@ $("document").ready(function() {
 		});
 	});
 
-	$("#displayFilter").on("mouseenter", ".productVendor", function(){
-		$(".productVendor").on("click",
+	$("#displayFilter").on("mouseenter", ".brand", function(){
+		$(".brand").on("click",
 		function (event){
 			var filterConditionJSON = createFilterCondition();
 			console.log(filterConditionJSON);
@@ -109,7 +109,7 @@ $("document").ready(function() {
 		$.ajax(
 			{
 				type: "GET",
-				url: "getSearchResult.php",
+				url: "../pages/getSearchResult.php",
 				data: jsonData,
 				success: function(data){
 					$("#displayResult").html(data);
@@ -122,7 +122,7 @@ $("document").ready(function() {
 		$.ajax(
 			{
 				type: "GET",
-				url: "getFilterResult.php",
+				url: "../pages/getFilterResult.php",
 				data: {search : $.trim($(".search").val())},
 				success: function(data){
 					$("#displayFilter").html(data);
@@ -136,15 +136,15 @@ $("document").ready(function() {
 		if ($.trim($(".search").val()) != ""){
 			filterConditionJSON["search"] = $.trim($(".search").val());
 		}
-		var productLines = $(".productLine");
+		var categorys = $(".category");
 		var selected = [];
-		for( var i = 0; i < productLines.length; ++i) {
-			if(productLines[i].checked){
-				selected.push(productLines[i].value);
+		for( var i = 0; i < categorys.length; ++i) {
+			if(categorys[i].checked){
+				selected.push(categorys[i].value);
 			}
 		}
 		if (selected.length > 0){
-			filterConditionJSON["productLine"] = selected;
+			filterConditionJSON["category"] = selected;
 		}
 
 		if ($.trim($(".priceFrom").val()) != "" && $.trim($(".priceFrom").val()) != ""){
@@ -152,15 +152,15 @@ $("document").ready(function() {
 			filterConditionJSON["priceTo"] = $.trim($(".priceTo").val());
 		}
 
-		var productVendors = $(".productVendor");
+		var brand = $(".brand");
 		var selected = [];
-		for( var i = 0; i < productVendors.length; ++i) {
-			if(productVendors[i].checked){
-				selected.push(productVendors[i].value);
+		for( var i = 0; i < brand.length; ++i) {
+			if(brand[i].checked){
+				selected.push(brand[i].value);
 			}
 		}
 		if (selected.length > 0){
-			filterConditionJSON["productVendor"] = selected;
+			filterConditionJSON["brand"] = selected;
 		}
 
 		return filterConditionJSON;
