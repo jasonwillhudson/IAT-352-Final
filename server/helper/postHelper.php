@@ -48,10 +48,10 @@ function getPostsList($filter)
     $result = '<div class="post-list">';
     $pathStart = '../../server/'; //the path to reach the folder
     while ($stmt->fetch()) {
-        $result .= '<div class="post-wrap">';
+        $result .= '<div class="post-wrap"><a href=../pages/modeldetails.php?post_id='.$postID.'\>';
         $result .= '<img class="post-image" src = "'.$pathStart.$imagePath.'" alt="post image"/>';
         $result .= '<p class="post-title">' . $title . '</p>';
-        $result .= '</div>';
+        $result .= '</a></div>';
     }
 
     $result .= '</div>';
@@ -59,3 +59,5 @@ function getPostsList($filter)
 
     return $result;
 }
+
+?>

@@ -2,17 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
-<<<<<<<< HEAD:svap-2.sql
 -- 主机： localhost
--- 生成日期： 2022-12-07 09:47:37
+-- 生成日期： 2022-12-08 19:09:57
 -- 服务器版本： 10.4.21-MariaDB
 -- PHP 版本： 8.0.10
-========
--- Host: 127.0.0.1
--- Generation Time: Dec 07, 2022 at 07:53 AM
--- Server version: 10.4.24-MariaDB
--- PHP Version: 8.1.6
->>>>>>>> d13668ad84bd25d390505107111126df32d8e4a0:Svap.sql
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -76,9 +69,20 @@ CREATE TABLE `comment` (
 
 CREATE TABLE `image_path` (
   `email` varchar(50) NOT NULL,
-  `post_id` int(11) NOT NULL,
+  `post_id` int(20) NOT NULL,
   `image_path` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 转存表中的数据 `image_path`
+--
+
+INSERT INTO `image_path` (`email`, `post_id`, `image_path`) VALUES
+('1762649548@qq.com', 1, 'imgStorage/1762649548@qq.com/1/0.png'),
+('1762649548@qq.com', 1, 'imgStorage/1762649548@qq.com/1/1.png'),
+('1762649548@qq.com', 2, 'imgStorage/1762649548@qq.com/2/0.png'),
+('1762649548@qq.com', 3, 'imgStorage/1762649548@qq.com/3/0.png'),
+('1762649548@qq.com', 4, 'imgStorage/1762649548@qq.com/4/0.png');
 
 -- --------------------------------------------------------
 
@@ -94,6 +98,13 @@ CREATE TABLE `member` (
   `city` varchar(20) NOT NULL,
   `isBanned` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 转存表中的数据 `member`
+--
+
+INSERT INTO `member` (`email`, `name`, `password`, `phone`, `city`, `isBanned`) VALUES
+('1762649548@qq.com', 'bcy', '$2y$10$d4wtWMD031P2iFkZN6p8meFGpAuzZtNz6aLY0ijFxg2kr7dRHnA5u', '6045628672', 'New Westminster', 0);
 
 -- --------------------------------------------------------
 
@@ -128,6 +139,16 @@ CREATE TABLE `post` (
   `value` decimal(20,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- 转存表中的数据 `post`
+--
+
+INSERT INTO `post` (`post_id`, `title`, `description`, `date`, `email`, `category`, `isReported`, `isTraded`, `value`) VALUES
+(1, 'Phone', 'isdbabccyigefeong', '2022-12-08 14:22:23', '1762649548@qq.com', 'tv', 0, 0, '100.00'),
+(2, 'sajdbkaa', 'sdcxkn', '2022-12-08 14:23:58', '1762649548@qq.com', 'tv', 0, 0, '100.00'),
+(3, 'asvc', 'asc8xztgivba', '2022-12-08 14:25:38', '1762649548@qq.com', 'tv', 0, 0, '100.00'),
+(4, '123', 'xsxa', '2022-12-08 14:28:36', '1762649548@qq.com', 'figure', 0, 0, '100.00');
+
 -- --------------------------------------------------------
 
 --
@@ -139,6 +160,17 @@ CREATE TABLE `want_to_trade` (
   `post_id` int(11) NOT NULL,
   `category` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- 转存表中的数据 `want_to_trade`
+--
+
+INSERT INTO `want_to_trade` (`email`, `post_id`, `category`) VALUES
+('1762649548@qq.com', 1, 'tv'),
+('1762649548@qq.com', 2, 'tv'),
+('1762649548@qq.com', 2, 'funko-pop'),
+('1762649548@qq.com', 3, 'tv'),
+('1762649548@qq.com', 4, 'casset');
 
 --
 -- 转储表的索引
@@ -163,6 +195,13 @@ ALTER TABLE `comment`
   ADD PRIMARY KEY (`comment_id`);
 
 --
+-- 表的索引 `image_path`
+--
+ALTER TABLE `image_path`
+  ADD KEY `post_id` (`post_id`),
+  ADD KEY `email` (`email`);
+
+--
 -- 表的索引 `member`
 --
 ALTER TABLE `member`
@@ -178,7 +217,8 @@ ALTER TABLE `message`
 -- 表的索引 `post`
 --
 ALTER TABLE `post`
-  ADD PRIMARY KEY (`post_id`);
+  ADD PRIMARY KEY (`post_id`),
+  ADD KEY `email` (`email`);
 
 --
 -- 在导出的表使用AUTO_INCREMENT
@@ -212,7 +252,24 @@ ALTER TABLE `message`
 -- 使用表AUTO_INCREMENT `post`
 --
 ALTER TABLE `post`
-  MODIFY `post_id` int(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `post_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- 限制导出的表
+--
+
+--
+-- 限制表 `image_path`
+--
+ALTER TABLE `image_path`
+  ADD CONSTRAINT `image_path_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`),
+  ADD CONSTRAINT `image_path_ibfk_2` FOREIGN KEY (`email`) REFERENCES `member` (`email`);
+
+--
+-- 限制表 `post`
+--
+ALTER TABLE `post`
+  ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`email`) REFERENCES `member` (`email`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
