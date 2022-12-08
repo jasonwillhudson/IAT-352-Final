@@ -2,10 +2,17 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
+<<<<<<<< HEAD:svap-2.sql
 -- 主机： localhost
 -- 生成日期： 2022-12-07 09:47:37
 -- 服务器版本： 10.4.21-MariaDB
 -- PHP 版本： 8.0.10
+========
+-- Host: 127.0.0.1
+-- Generation Time: Dec 07, 2022 at 07:53 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
+>>>>>>>> d13668ad84bd25d390505107111126df32d8e4a0:Svap.sql
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
