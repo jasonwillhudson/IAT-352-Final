@@ -14,7 +14,6 @@ function require_SSL() {
 	}
 }
 
-session_start();
 $db =  connectToDB('localhost', 'root', '', 'svap');
 
 

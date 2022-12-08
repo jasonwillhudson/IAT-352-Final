@@ -1,11 +1,16 @@
 <?php
 include_once "db.php";
 
+
 class Chat{    
+
+	//table to use for accessing data
     private $chatTable = 'message';
 	private $chatUsersTable = 'member';
-	//private $chatLoginDetailsTable = 'chat_login_details';
+
 	private $dbConnect = false;
+
+	//initialize, connect to database and handle errors
     public function __construct(){
         if(!$this->dbConnect){ 
             $conn =  connectToDB('localhost', 'root', '', 'svap');;
@@ -91,6 +96,8 @@ class Chat{
 			ORDER BY time_stamp ASC";
 		$userChat = $this->getData($sqlQuery);	
 		$conversation = '<ul>';
+
+		//make each of chat information to html element and send them to ajax to render on the page
 		foreach($userChat as $chat){
 	
 			if($chat["sender_email"] == $from_user_id) {
@@ -117,7 +124,9 @@ class Chat{
 		}		
 		// get user conversation
 		$conversation = $this->getUserChat($from_user_id, $to_user_id);	
-		// update chat user read status		
+
+
+		// change all the unread message from input user to read	
 		$sqlUpdate = "
 			UPDATE ".$this->chatTable." 
 			SET status = '0' 
@@ -130,6 +139,8 @@ class Chat{
 		 );
 		 echo json_encode($data);		
 	}	
+
+	//count the unread message and return the result to ajax
 	public function getUnreadMessageCount($senderUserid, $recieverUserid) {
 		$sqlQuery = "
 			SELECT * FROM ".$this->chatTable."  

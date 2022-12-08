@@ -3,43 +3,67 @@
 		display: flex;
 	}
 
-	.filter {
-		width: 300px;
-		border-right: 1px solid #eee;
-		height: 100vh;
-		font-size: 10pt;
-		min-width: 290px;
-		padding: 0 0.5rem;
+	#filter {
+		display: flex;
+		flex-direction: column;
+		box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+		margin: 20px;
+		padding: 20px;
+		width:250px
 	}
 
-	.result {
-		padding: 0 1rem;
+	.sub-filter{
+		display: flex;
+		flex-direction: column;
+		margin-left: 40px;
 	}
 
-	.searchBar {
-		margin: 0.2rem 0;
+	.filter-title-wrap input{
+		margin: 12px;
 	}
 
-	.products{
-		display:flex;
+	.filter-title-wrap{
+		font-size: 17px;
+		font-weight: 600;
+		margin-top: 30px;
+	}
+
+	.post-container{
+		display: flex;
+		justify-content: center;
+		flex: 1 1 100%;
+	}
+
+	.post-list{
+		display: inline-flex;
+		padding: 20px;
 		flex-wrap: wrap;
-		gap:1rem;
-		font-size:11pt;
+		flex: 1 1 100%;
+		height: fit-content;
+	}
+	.post-wrap{
+		box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+		height: 310px;
+		width:250px;
+		margin: 15px;
+		transition: .4s;
 	}
 
-	.products img{
-		width:100%;
-		border-radius:20px;
+	.post-title{
+		width: 80%;
+		margin: auto;
+		height: 40px;
+		overflow: hidden;
+		font-weight: 400;
+		margin-top: 8px;
+		font-size: 17px;
 	}
 
-	.products>div{
-		flex: 1 1 15%;
-		max-width:16rem;
-		border:1px solid #ddd;
-		border-radius:20px;
-		padding:1rem;
-		background:#f6f6f6;
+	.post-wrap:hover{
+		transform: translateY(-10px);
+		transition: .4s;
 	}
+
 </style>
 
 
@@ -52,6 +76,9 @@ include_once "../components/elements.php";
 //initialize the page (detect login status and https application, and redirect)
 if (!initialize(false, false)) exit();
 
+//include helper Functions
+include_once("../../server/helper/postHelper.php");
+
 //import header elements
 require "../components/header.php";
 
@@ -59,13 +86,12 @@ require "../components/header.php";
 require "../components/nav.php";
 ?>
 
-<!-- <link rel="stylesheet" href="../css/chat.css"> -->
 
 
-<?php
+<div class=container>
+	<?php
+	/*
 include('../components/included_functions.php');
-no_SSL();
-
 
 echo "<form action='showmodels.php' method='get' class='searchBar'>";
 echo "Search: <input type='text' name='search' class='search' size = '40' value=''>";
@@ -85,43 +111,39 @@ echo "</div>";
 echo "</div>";
 echo "</div>";
 
+*/
+	echo "<form method = post id=\"filter\">";
 
-?>
+	echo "<h3>Filter By</h3>";
 
-<?php
-
-
-
-
-
-$query_str = "SELECT post_id, title, description, date, category, value  FROM post";
-
-$res = $db->query($query_str);
+	//Digital Media Section
+	echo "<div class='filter-title-wrap'><input type='checkbox' name='media' id='media'/><span class ='filter-title'>Media Entertainment</span></div>";
+	$arr = array('Casset' => 'casset', 'CD' => 'cd', 'DVD' => 'dvd', 'Blu-Ray' => 'blu-ray', 'Laser Disc' => 'laser-disc');
+	createCheckBoxes('media', $arr);
 
 
-function format_model_name_as_link($id,$title,$page) {
-	echo "<a href=\"$page?post_id=$id\">$title</a>";
-	}
-
-echo "<h2>All Items</h2>";
-
+	//Electronics section
+	echo "<div class='filter-title-wrap'><input type='checkbox' name='electronic' id='electronics'/><span class ='filter-title'>Electronics</span></div>";
+	$arr = array('TV' => 'tv', 'Desktop' => 'desktop', 'Laptop' => 'laptop', 'Speaker' => 'speaker', 'Phone' => 'phone', 'Gaming Console' => 'game-console');
+	createCheckBoxes('electronics', $arr);
 
 
-echo "<ul>";
-while ($row = $res->fetch_row()) {
-	echo "<li>";
-	format_model_name_as_link($row[0], $row[1],"modeldetails.php");
-	
-	echo "</li>\n";
-};
-echo "</ul>";
-
-include('../components/footer.php');
-$res->free_result();
-$db->close();
-?>
+	//Collectibles section
+	echo "<div class='filter-title-wrap'><input type='checkbox' name='toys' id='toys'/><span class ='filter-title'>Toys / Collectibles</span></div>";
+	$arr = array('Collectible' => 'collectible', 'Funko Pop' => 'funko-pop', 'Figure' => 'figure', 'Lego' => 'lego');
+	createCheckBoxes('collectible', $arr);
 
 
+	//submit
+	echo '<input id="filter" type="submit" name= "submit" value="Filter Result" style="width:130px; font-size: 16px; height:50px; display:flex; justify-content:center;">';
+	echo "</form>";
 
 
-
+	?>
+	<!---------------------------------Display Posts------------>
+	<div class="post-container" id="posts">
+		<?php echo getPostsList([]) ?>
+	</div>
+</div>
+<script src="../js/postListProcess.js"></script>
+<?php require "../components/footer.php"; ?>

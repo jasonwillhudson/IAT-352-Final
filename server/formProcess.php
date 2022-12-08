@@ -53,8 +53,6 @@ foreach ($path as $image_path) {
 
 
 
-
-
 //======================= Add the category this post want to trade with to the table===============//
 
 //Write a query which add the category information to want_to_trade table

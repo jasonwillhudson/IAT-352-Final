@@ -72,7 +72,7 @@ function createDropDown($label, $name, $var, $select)
 //create check box
 function createCheckBoxes($name, $var)
 {
-   echo "<div style=\"display: flex; flex-wrap: wrap;\">";
+   echo "<div class='sub-filter' style=\"display: flex; flex-wrap: wrap;\">";
    //create drop down options based on key and value in array
    foreach ($var as $key => $value) {
       echo "<div><input type='checkbox' style=\"margin: 12px;\" name=\"$name\" value=\"$value\">$key&nbsp;&nbsp;</div>";
