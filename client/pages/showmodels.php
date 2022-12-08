@@ -9,47 +9,48 @@
 		box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 		margin: 20px;
 		padding: 20px;
-		width:250px
+		flex: 0 0 250px;
 	}
 
-	.sub-filter{
+	.sub-filter {
 		display: flex;
 		flex-direction: column;
 		margin-left: 40px;
 	}
 
-	.filter-title-wrap input{
+	.filter-title-wrap input {
 		margin: 12px;
 	}
 
-	.filter-title-wrap{
-		font-size: 17px;
+	.filter-title-wrap {
+		font-size: 16px;
 		font-weight: 600;
 		margin-top: 30px;
 	}
 
-	.post-container{
+	.post-container {
 		display: flex;
 		justify-content: center;
 		flex: 1 1 100%;
 	}
 
-	.post-list{
+	.post-list {
 		display: inline-flex;
 		padding: 20px;
 		flex-wrap: wrap;
 		flex: 1 1 100%;
 		height: fit-content;
 	}
-	.post-wrap{
+
+	.post-wrap {
 		box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 		height: 310px;
-		width:250px;
+		width: 250px;
 		margin: 15px;
 		transition: .4s;
 	}
 
-	.post-title{
+	.post-title {
 		width: 80%;
 		margin: auto;
 		height: 40px;
@@ -59,11 +60,10 @@
 		font-size: 17px;
 	}
 
-	.post-wrap:hover{
+	.post-wrap:hover {
 		transform: translateY(-10px);
 		transition: .4s;
 	}
-
 </style>
 
 
@@ -135,7 +135,7 @@ echo "</div>";
 
 
 	//submit
-	echo '<input id="filter" type="submit" name= "submit" value="Filter Result" style="width:130px; font-size: 16px; height:50px; display:flex; justify-content:center;">';
+	echo '<input type="submit" name= "submit" value="Filter Result" style="width:130px; font-size: 16px; height:50px; display:flex; justify-content:center; align-self:center; margin:25px;">';
 	echo "</form>";
 
 
