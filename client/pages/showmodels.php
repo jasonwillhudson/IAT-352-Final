@@ -48,22 +48,58 @@
 		width: 250px;
 		margin: 15px;
 		transition: .4s;
+		display: flex;
+		flex-direction: column;
 	}
 
 	.post-title {
 		width: 80%;
 		margin: auto;
-		height: 40px;
+		height: 20px;
 		overflow: hidden;
 		font-weight: 400;
-		margin-top: 8px;
 		font-size: 17px;
 	}
 
-	.post-wrap:hover {
-		transform: translateY(-10px);
+	.post-wrap a {
 		transition: .4s;
 	}
+
+	.post-wrap a:hover {
+		transform: translateY(-10px);
+		transition: .4s;
+		box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	}
+
+	.text-wrap {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		flex: 1 1 auto;
+		padding: 0 15px;
+	}
+
+	.star {
+		width: 40px;
+		height: 40px;
+		font-size: 30px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		transition: .3s;
+	}
+
+	.star:hover {
+		cursor: pointer;
+		transform: scale(1.3);
+		transition: .3s;
+
+	}
+
+	.unlike {
+		color: darkorange
+	}
+
 </style>
 
 
@@ -84,6 +120,7 @@ require "../components/header.php";
 
 //import navbar
 require "../components/nav.php";
+
 ?>
 
 
@@ -135,7 +172,7 @@ echo "</div>";
 
 
 	//submit
-	echo '<input type="submit" name= "submit" value="Filter Result" style="width:130px; font-size: 16px; height:50px; display:flex; justify-content:center; align-self:center; margin:25px;">';
+	echo '<input type="submit" name= "submit" value="Filter Result" style="width:130px; font-size: 16px; height:50px; display:flex; justify-content:center; align-self:center; margin-top:25px;">';
 	echo "</form>";
 
 
