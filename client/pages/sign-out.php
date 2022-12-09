@@ -1,7 +1,7 @@
 <?php
-    include('included_functions.php');
+    include('../components/included_functions.php');
     session_start();
     session_destroy();
     $message = "Signed out";
-    redirect_to('index.php');
+    redirect_to('../pages/showmodels.php');
 ?>

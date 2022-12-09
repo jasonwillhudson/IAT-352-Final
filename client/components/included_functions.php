@@ -28,8 +28,8 @@ function makeHeader($title, $css) {
     echo "<body>";
 }
 
-if(!empty($_SESSION['valid_user']))  {
-    $current_user = $_SESSION['valid_user'];
+if(!empty($_SESSION['email']))  {
+    $current_user = $_SESSION['email'];
     //$query = "SELECT * from members WHERE email = '$current_user'";
     //$result = mysqli_query($connection, $query);
     //while($subject = mysqli_fetch_assoc($result)) {
@@ -59,15 +59,15 @@ function connectToDB($dbhost, $dbuser, $dbpass, $dbname) {
 }
 
 function is_logged_in() {
-	return isset($_SESSION['valid_user']);
+	return isset($_SESSION['email']);
 }
 
 function is_in_watchlist($code) {
 	global $db;
-	if (isset($_SESSION['valid_user'])) {
+	if (isset($_SESSION['email'])) {
 		$query = "SELECT COUNT(*) FROM collection WHERE post_id=? AND collector_email=?";
 		$stmt = $db->prepare($query);
-		$stmt->bind_param('ss',$code, $_SESSION['valid_user']);
+		$stmt->bind_param('is',$code, $_SESSION['email']);
 		$stmt->execute();
 		$stmt->bind_result($count);
 	    return ($stmt->fetch() && $count > 0);
