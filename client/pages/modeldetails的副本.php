@@ -4,8 +4,6 @@ use LDAP\Result;
 
 session_start();
 
-// print_r($_SESSION);
-
 //import web elements generation helper
 include_once "../components/elements.php";
 
@@ -19,7 +17,7 @@ require "../components/header.php";
 require "../components/nav.php";
 ?>
 
-<link rel="stylesheet" href="../css/single_product.css">
+<!-- <link rel="stylesheet" href="../css/chat.css"> -->
 
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
@@ -116,101 +114,9 @@ if ($stmt->fetch()) {
 
 $stmt->close();
 ?>
-
-<main>
-  <div class="single-product">
-    <div class="single-product-images">
-      <img <?php echo "src=../../server/$image" ?> alt="" class="first_image">
-      <?php
-
-$query_str2 = "SELECT image_path.image_path
-   FROM post
-   INNER JOIN image_path ON post.post_id = image_path.post_id
-   WHERE post.post_id = ?";
-
-$stmt = $db->prepare($query_str2);
-
-$stmt->bind_param('s', $code);
-$stmt->execute();
-$result = $stmt->get_result();
-
-?>
-
 <?php
-while ($row = $result->fetch_row()) {
-
-  // echo "<div class='w3-col s3'>
-  //  <img src='../../server/$row[0]'   onclick='displaySelectedImage(\"$row[0]\")' title='Image1'>
-  // </div>";
-
-  echo  "              <img src='../../server/$row[0]' alt=''>                 "                      ;
-}
+include('../components/footer.php');
 ?>
-
-      <!-- picture reference:https://converse.ca/chuck-taylor-all-star-low-top-carryover.html -->
-
-    </div>
-    <div class="single-product-info">
-      <h2><?php echo "$postTitle" ?>
-      <?php
-      if (is_logged_in()) {
-        if (is_in_watchlist($code)) {
-          echo "<a href='addtowatchlist.php?postId=$code'><i class='fa-solid fa-star'></i></a>";
-        } else {
-          echo "<a href='addtowatchlist.php?postId=$code'><i class='fa-regular fa-star'></i></a>";
-        }
-      }
-
-      // if (is_logged_in() && !is_in_watchlist($code)) {
-      //   echo "<form action=\"addtowatchlist.php\" method=\"post\">\n";
-      //   echo "<input type=\"hidden\" name=\"postId\" value=$code>\n";
-      //   echo "<input type=\"submit\" value=\"Add To Watchlist\">\n";
-      //   echo "</form>\n";
-      // }
-
-
-      ?>
-    </h2>
-      <div id="product-price">
-        <div>
-          <p>POST BY: <?php echo "$name" ?></p>
-        </div>
-        <div class=box3>
-          <p>In stock</p>
-        </div>
-      </div>
-      <p>POST AT: <?php echo "$postDate" ?></p>
-      
-      <h3>Item Description</h3>
-      <p><?php echo "$postDesctib" ?></p>
-
-      <h3>Basic Information</h3>
-      <i class="fa-solid fa-city"></i> City: <?php echo "$city" ?>
-      <p><i class="fa-sharp fa-solid fa-phone"></i> Phone: <?php echo "$phone" ?></p>
-      <p><i class="fa-solid fa-envelope-circle-check"></i> E-mail: <?php echo "$postEmail" ?></p>
-      <hr>
-
-      <h3>Want to trade</h3>
-      <i class="fa-solid fa-city"></i> City: <?php echo "$want_trade" ?>
-
-
-
-
-
-      <?php
-      if (is_logged_in()) {
-        if (is_in_watchlist($code)) {
-          echo "<div class='place-in-cart-btn'><a href='addtowatchlist.php?postId=$code'><button>Remove from favorite</button></div></a>";
-        } else {
-          echo "<div class='place-in-cart-btn'><a href='addtowatchlist.php?postId=$code'><button>Add to favorite</button></div></a>";
-        }
-      }
-      ?>
-      
-  </div>
-</main>
-
-
 
 
 <!-- !PAGE CONTENT! -->
@@ -225,22 +131,18 @@ while ($row = $result->fetch_row()) {
     <h2 class="w3-text-green"><?php echo "$postTitle" ?>
 
       <?php
-      if (is_logged_in()) {
-        if (is_in_watchlist($code)) {
-          echo "<a href='addtowatchlist.php?postId=$code'><i class='fa-solid fa-star'></i></a>";
-        } else {
-          echo "<a href='addtowatchlist.php?postId=$code'><i class='fa-regular fa-star'></i></a>";
-        }
+      if (is_logged_in() && !is_in_watchlist($code)) {
+        echo "<form action=\"addtowatchlist.php\" method=\"post\">\n";
+        echo "<input type=\"hidden\" name=\"productCode\" value=$code>\n";
+        echo "<input type=\"submit\" value=\"Add To Watchlist\">\n";
+        echo "</form>\n";
       }
 
-      // if (is_logged_in() && !is_in_watchlist($code)) {
-      //   echo "<form action=\"addtowatchlist.php\" method=\"post\">\n";
-      //   echo "<input type=\"hidden\" name=\"postId\" value=$code>\n";
-      //   echo "<input type=\"submit\" value=\"Add To Watchlist\">\n";
-      //   echo "</form>\n";
-      // }
-
-
+      if (is_in_watchlist($code)){
+        echo "<a href=''><i class='fa-solid fa-star'></i></a>";
+      }else{
+        echo "<a href=''><i class='fa-regular fa-star'></i></a>";
+      }
       ?>
     </h2>
     <div class="w3-display-container mySlides">
@@ -252,9 +154,9 @@ while ($row = $result->fetch_row()) {
     <?php
 
     $query_str2 = "SELECT image_path.image_path
-       FROM post
-       INNER JOIN image_path ON post.post_id = image_path.post_id
-       WHERE post.post_id = ?";
+FROM post
+INNER JOIN image_path ON post.post_id = image_path.post_id
+WHERE post.post_id = ?";
 
     $stmt = $db->prepare($query_str2);
 
@@ -282,16 +184,16 @@ while ($row = $result->fetch_row()) {
   <p>Posted At: <?php echo "$postDate" ?> & Posted By: <?php echo "$name" ?></p>
   <br>
   <?php
-  // if (is_logged_in() && !is_in_watchlist($postId)) {
-  //   echo "<form action=\"../components/addtowatchlist.php\" method=\"post\">\n";
-  //   echo "<input type=\"hidden\" name=\"post_id\" value=$postId>\n";
-  //   echo "<input type=\"submit\" value=\"I Like It\">\n";
-  //   echo "</form>\n";
-  // } else if (!empty($msg)) {
-  //   echo "<p>$msg</p>\n";
-  // } else if (is_logged_in()) {
-  //   echo "This model is already in your <a href=\"showwatchlist.php\">Likes</a>.";
-  // }
+  if (is_logged_in() && !is_in_watchlist($postId)) {
+    echo "<form action=\"../components/addtowatchlist.php\" method=\"post\">\n";
+    echo "<input type=\"hidden\" name=\"post_id\" value=$postId>\n";
+    echo "<input type=\"submit\" value=\"I Like It\">\n";
+    echo "</form>\n";
+  } else if (!empty($msg)) {
+    echo "<p>$msg</p>\n";
+  } else if (is_logged_in()) {
+    echo "This model is already in your <a href=\"showwatchlist.php\">Likes</a>.";
+  }
   ?>
 
   <h4><strong>Item Description</strong></h4>
@@ -344,25 +246,7 @@ while ($row = $result->fetch_row()) {
   <!-- End page content -->
 </div>
 
-<?php
-include('../components/footer.php');
-?>
-
 <script>
-  imgs = document.querySelectorAll(".single-product-images img");
-
-
-  function changeImg() {
-    path = imgs[0].src;
-    imgs[0].src = this.src;
-    this.src = path;
-  }
-
-  //for each image to combine an event in order to change image
-  for (i = 0; i < imgs.length; i++) {
-    imgs[i].addEventListener('click', changeImg);
-  }
-
   // Script to open and close sidebar when on tablets and phones
   function w3_open() {
     document.getElementById("mySidebar").style.display = "block";

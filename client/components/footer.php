@@ -5,7 +5,7 @@
 
 <style>
     #footer {
-        margin-top: auto;
+        margin-top: 10rem;
 
     }
 </style>
