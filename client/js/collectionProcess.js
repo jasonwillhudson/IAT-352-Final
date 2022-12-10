@@ -1,5 +1,6 @@
-//=====remove from collection if user click unlike=====//
-$(document).on('click',".unlike",function () {
+$(document).ready(function () {
+  //=====remove from collection if user click unlike=====//
+  $(document).on("click", ".unlike", function () {
     //store the form data and post it with the request
     var data = new FormData();
 
@@ -22,10 +23,11 @@ $(document).on('click',".unlike",function () {
 
     //render all the elements on the page if success
     request.done(function (msg) {
-        $("#posts").html(msg);
+      $("#posts").html(msg);
     });
 
     request.fail(function (msg) {
       console.log("error" + msg);
     });
   });
+});

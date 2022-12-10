@@ -41,7 +41,7 @@ $(document).ready(function () {
         //direct user to last visted page if no error occurs
         if (msg[0].mssg == "success") {
           if (msg[0].visitedUrl == "")
-            window.location.href = "../pages/register.php";
+            window.location.href = "../pages/showmodels.php";
           else window.location.replace("http://" + msg[0].visitedUrl);
         } 
         

@@ -2,7 +2,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 h1 {
@@ -117,24 +117,19 @@ img {
 
 
 /* nav bar*/
-* {
-	font-family: "Montserrat", sans-serif;
-	box-sizing: border-box;
-	margin: 0;
-	padding: 0;
-}
+
 .nav-list {
 	background-color: rgb(0, 0, 0);
 	margin: 0;
 	padding: 1rem 0;
 	display: flex;
-	justify-content: flex-end;
+	justify-content: space-between;
 	align-items: center;
 }
 
 .nav-items {
 	list-style: none;
-	margin-right: 2rem;
+	margin: 0 15px;
 	color: beige;
 }
 
@@ -142,19 +137,19 @@ img {
 	text-decoration: none;
 	color: white;
 }
-
 .nav-items:first-child {
 	margin-right: auto;
 	margin-left: 2rem;
 }
 
 .nav-btn {
-	font-size: 1rem;
+	font-size: 15px;
 	background: rgb(165, 117, 210);
 	border: none;
 	outline: none;
-	padding: 0.5rem 1rem;
+	padding: 10px 15px;
 	cursor: pointer;
+
 }
 
 .nav-btn:hover {
@@ -165,3 +160,17 @@ img {
 .nav-items a:hover {
 	color: blueviolet;
 }
+
+#footer {
+  background-color: black;
+  color: white;
+  margin-top: 30px;
+  text-align: center;
+  padding: 30px;
+}
+
+a img:hover{
+  opacity: .8;
+}
+
+
