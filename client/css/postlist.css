@@ -94,3 +94,16 @@
 .unlike {
     color: darkorange
 }
+
+.delete-button{
+    padding: 10px 16px;
+    border: none;
+    background-color: var(--light-black);
+}
+
+.delete-button:hover{
+    background-color: var(--medium-black);
+    color: var(--white);
+    cursor: pointer;
+    transition: .4s;
+}

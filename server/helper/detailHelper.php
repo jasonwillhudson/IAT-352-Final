@@ -39,9 +39,9 @@ function displayBasicInfo($postID)
     while ($stmt->fetch()) {
 
         //title elements
-        $result .= '<div class="wrap"><h2 class="main-title">' . $title . ' <strong>Value(CAD)</strong> <span>' . $value . '</span></h2>';
-        $result .= '<p class="sub-title"><strong>By </strong>' . $name . '</p>';
-        $result .= '<p class="sub-title"><strong>Date </strong>' . $date . '</p></div>';
+        $result .= '<div class="wrap"><h2 class="main-title">' . $title . ' </h2>';
+        $result .= '<p class="sub-title"><strong>From</strong>' . $name . '</p>';
+        $result .= '<p class="sub-title"><strong>Date</strong>' . date('M j Y g:i A', strtotime($date)) . '</p><strong>Value(CAD)</strong> <span>' . $value . '</span></div>';
 
 
         //Desctiprion of the item

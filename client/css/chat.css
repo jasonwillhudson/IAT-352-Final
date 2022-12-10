@@ -6,7 +6,7 @@
 body {
     display: flex;
     flex-direction: column;
-    height: 110vh;
+    height: 115vh;
 }
 
 .container {
@@ -15,7 +15,7 @@ body {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     margin: 25px;
     width:90%;
-    height: 95vh;
+    height: 100%;
     max-width: 1000px;
     align-self: center;
     min-height: 500px;
@@ -55,6 +55,7 @@ body {
     width:130px;
     overflow: hidden;
     font-weight: 600;
+    opacity: .8;
     
 }
 
@@ -103,6 +104,10 @@ body {
 }
 button {
     padding: 10px 20px;
+    border: none;
+    background-color: var(--light-black);
+    font-weight: 600;
+    color: var(--medium-black);
 }
 
 button:hover{

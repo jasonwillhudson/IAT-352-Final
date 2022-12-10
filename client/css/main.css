@@ -47,9 +47,13 @@ select {
   margin: auto;
 }
 
+fieldset{
+  border: 1px solid silver;
+}
 input[type="text"],
 input[type="number"],
 input[type="password"],
+select,
 textarea {
   border: 1px solid silver;
   position: relative;
@@ -65,20 +69,20 @@ input[type="submit"] {
   padding: 15px 40px;
   width: 100%;
   font-size: 20px;
-  background-color: var(--theme-color);
-  color: white;
+  background-color: var(--light-black);
+  color: var(--medium-black);
   cursor: pointer;
   transition: 0.3s;
-  border: 1px solid var(--theme-color);;
+  border: none;
 }
 input[type="submit"]:hover {
-  color: var(--theme-color);;
-  background-color: var(--white);;
+  color: var(--white);
+  background-color: var(--theme-color);
 }
 
 input:focus,
 textarea:focus {
-  outline-color: var(--theme-color);;
+  outline-color: var(--theme-color);
 }
 
 textarea {
@@ -142,6 +146,7 @@ img {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+  margin-bottom: 20px;
 }
 
 .nav-items {
@@ -153,6 +158,10 @@ img {
 .nav-items a {
 	text-decoration: none;
 	color: var(--black);
+  font-size: 18px;
+  font-weight: 700;
+  opacity: .8;
+  transition: .4s;
 }
 .nav-items:first-child {
 	margin-right: auto;
@@ -161,21 +170,28 @@ img {
 
 .nav-btn {
 	font-size: 15px;
-	background: var(--theme-color);
+	background: var(--light-black);
 	border: none;
 	outline: none;
-	padding: 10px 15px;
+	padding: 15px 20px;
 	cursor: pointer;
+  font-weight: 600;
+  color: var(--medium-black);
+
 
 }
 
 .nav-btn:hover {
 	background-color: var(--theme-color);
 	color: var(--white);
+  transition: .4s;
 }
 
 .nav-items a:hover {
 	color: var(--theme-color);
+  transition: .4s;
+  letter-spacing: 5px;
+  opacity: 1;
 }
 
 #footer {
@@ -190,4 +206,24 @@ a img:hover{
   opacity: .8;
 }
 
+.plus{
+  font-size: 30px;
+  border: 3px solid var(--black);
+  width:30px;
+  height:30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+.plus:hover{
+  transform: rotate(90deg);
+  letter-spacing: 0;
+}
+/* error message*/
+.errorMssg, .checkErrMssg{
+  background-color: lightpink;
+  color: darkred;
+  margin-bottom: 20px;
+  padding: 0px 10px;
+}
