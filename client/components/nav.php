@@ -1,6 +1,7 @@
 <nav>
+
 	<ul class="nav-list">
-		<li class="nav-items">sVap</li>
+		<li class="nav-items"><a href="../pages/showmodels.php">sVap</a></li>
 		<li class="nav-items"><a href="../pages/showmodels.php">Home</a></li>
 		<li class="nav-items"><a href="../pages/collection.php">Favourites</a></li>
 		<li class="nav-items"><a href="../pages/mypost.php">My Post</a></li>
