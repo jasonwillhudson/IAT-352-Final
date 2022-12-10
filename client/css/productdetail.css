@@ -104,7 +104,7 @@ strong{
   color: darkorange
 }
 
-.like-button, .unlike-button{
+.like-button, .unlike-button, .delete-button{
   margin-left: 100%;
   display: flex;
   align-items: center;
@@ -112,11 +112,15 @@ strong{
   margin-bottom: 15px;
 }
 
-.button-text{
+.button-holder{
+  margin-bottom: 35px;
+}
+
+.button-text, .delete-button{
   text-decoration: underline;
 }
 
-.like-button:hover, .unlike-button:hover{
+.like-button:hover, .unlike-button:hover, .delete-button:hover{
   cursor: pointer;
   color: blue;
 }

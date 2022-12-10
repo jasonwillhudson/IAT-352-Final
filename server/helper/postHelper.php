@@ -5,10 +5,16 @@ include_once "db.php";
 //connect to database
 $db = connectToDB('localhost', 'root', '', 'svap');
 
+
+
+
 //start the session if no session existed
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+
+
 
 //get the list of post data from the database
 function getPostsList($filter)
@@ -89,6 +95,10 @@ function getPostsList($filter)
     return $result;
 }
 
+
+
+
+
 //get the posts from user collections and return an array of post id
 function getCollection($email)
 {
@@ -111,6 +121,10 @@ function getCollection($email)
     return $result;
 }
 
+
+
+
+
 //Add the data to collection table
 function addToCollection($postID)
 {
@@ -131,6 +145,12 @@ function addToCollection($postID)
     return 'success';
 }
 
+
+
+
+
+
+//remove the post from the collection
 function removeFromCollection($postID)
 {
     global $db;
@@ -149,6 +169,10 @@ function removeFromCollection($postID)
 
     return 'success';
 }
+
+
+
+
 
 
 //get the list of post data from the database
@@ -197,4 +221,113 @@ function getCollectionList()
 
 
     return $result;
+}
+
+
+
+
+
+//get the elements to display the post at front end
+function getMyPost()
+{
+    global $db;
+
+    //write a query to select the unique post data we need from joined tables
+    $query = "SELECT MAX(post.title), MAX(image_path.image_path), post.post_id FROM post  
+                INNER JOIN image_path ON post.post_id = image_path.post_id 
+                WHERE post.email = ? GROUP BY post.post_id";
+
+
+    //send the query to database to execute and return the result
+    $stmt = $db->prepare($query);
+
+    //if session not exists, handle the error
+    if (empty($_SESSION['email'])) {
+        echo "user not found";
+        exit();
+    }
+
+    $stmt->bind_param('s', $_SESSION['email']);
+    $stmt->execute();
+    $stmt->bind_result($title, $imagePath, $postID);
+
+    //make each of chat information to html element and send them to ajax to render on the page
+    $result = '<div class="post-list">';
+    $pathStart = '../../server/'; //the path to reach the folder
+
+
+    while ($stmt->fetch()) {
+        $result .= '<div class="post-wrap"><a href=../pages/modeldetails.php?post_id=' . $postID . '>';
+        $result .= '<img class="post-image" src = "' . $pathStart . $imagePath . '" alt="post image"/></a>';
+        $result .= '<div class="text-wrap"><p class="post-title">' . $title . '</p>';
+
+        //post is in collection, add unlike button
+        $result .= '<button id="' . $postID . '" class="delete-button">Delete</button>';
+
+        $result .= '</div></div>';
+    }
+
+    $result .= '</div>';
+
+
+    return $result;
+}
+
+
+
+
+
+//remove post from database
+function removePost($postID)
+{
+
+    global $db;
+
+    //remove all the basic information of the posts
+    $query = "DELETE post, image_path, want_to_trade FROM post
+    INNER JOIN image_path ON image_path.post_id = post.post_id
+    INNER JOIN want_to_trade ON want_to_trade.post_id = post.post_id
+    WHERE post.post_id = ?";
+
+    //send the query to database to execute and return the result
+    $stmt = $db->prepare($query);
+
+    $stmt->bind_param('i', $postID);
+    $stmt->execute();
+
+    //remove comments of the posts
+    removeRowIn("comment", $postID);
+
+    //remove post from collection
+    removeRowIn("collection", $postID);
+
+    //remove the image folder contains this post's image files
+    $dir = "imgStorage/" . $_SESSION['email'] . "/" . $postID;
+    if (file_exists($dir)) removeImg($dir);
+}
+
+function removeRowIn($table, $postID)
+{
+
+    global $db;
+
+    $query = "DELETE FROM ". $table . " WHERE post_id = ?";
+
+
+    //send the query to database to execute and return the result
+    $stmt = $db->prepare($query);
+
+    $stmt->bind_param('i', $postID);
+    $stmt->execute();
+}
+
+//remove image files
+function removeImg($path)
+{
+    $files = glob($path . '/*');
+    foreach ($files as $file) {
+        is_dir($file) ? removeImg($file) : unlink($file);
+    }
+    rmdir($path);
+    return;
 }

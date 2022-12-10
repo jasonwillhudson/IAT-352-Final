@@ -11,6 +11,9 @@ if(!initialize(true, false)) exit();
 
 //import header elements
 require "../components/header.php";
+
+//import navbar
+require "../components/nav.php";
 ?>
 
 <section style="display:flex; flex-direction: column; justify-content:center;">
@@ -51,7 +54,6 @@ require "../components/header.php";
                 <input style="margin-bottom: 25px;" type="file" id="fileInput" name="image[]" accept="image/*" required/>
 
                 <div id="thumb-output"></div>
-                <div id="showFiles">show files</div>
             </fieldset>
 
             </br>

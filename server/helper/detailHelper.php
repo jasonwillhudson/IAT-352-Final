@@ -54,10 +54,10 @@ function displayBasicInfo($postID)
         $result .= '<p class="contact"><strong>Phone </strong>' . $phone . '</p>';
         $result .= '<p class="contact"><strong>Email </strong>' . $email . '</p>';
         $result .= '<p class="contact"><strong>City </strong>' . $city . '</p>';
-        $result .= '<button id="message">Message Owner</button></div>';
+        if(!empty($_SESSION['email']) && !($_SESSION['email'] == $email)) $result .= '<button id="message">Message Owner</button>';
     }
 
-    $result .= '</div>';
+    $result .= '</div></div>';
     //favourite element
     $button = "";
     $button .= getLikeButton($postID, $email);
@@ -129,8 +129,13 @@ function getLikeButton($postID, $postEmail)
             //post is not in collection
             $result .= '<a class="like-button"><span class="button-text">Like</span><span id="' . $postID . '" class="like star">&#9734;</span></a>';
         }
-    } else {
-        $result .= '<a><span></span></a>';
+    } 
+    //if th user is post owner, show a delete button
+    else if((!empty($_SESSION['email']) && $_SESSION['email'] == $postEmail) ){
+        $result .= '<a class="delete-button">Delete</a>';
+    }
+    else {
+        $result .= '<a class="button-holder"><span></span></a>';
     }
 
     return $result;

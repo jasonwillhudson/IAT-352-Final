@@ -31,6 +31,13 @@ if (!empty($_POST['action'])) {
         echo $result;
     }
 
+    //remove my post
+    if ($_POST['action'] == 'removeMyPost') {
+        removePost($_POST['postID']);
+        $result = getMyPost();
+        echo $result;
+    }
+
 
 } else {
     echo 'error: no command detected';
