@@ -310,7 +310,7 @@ function removePost($postID)
     $stmt->execute();
 
     //remove comments of the posts
-    removeRowIn("comment", $postID);
+    //removeRowIn("comment", $postID);
 
     //remove post from collection
     removeRowIn("collection", $postID);

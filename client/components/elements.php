@@ -1,7 +1,7 @@
 <?php
 
 //Create a input filed and display on the page
-function makeInput($label, $name, $type, $required = false, $value = " ")
+function makeInput($label, $name, $type, $required = false, $value = "")
 {
 
    strval($value);
