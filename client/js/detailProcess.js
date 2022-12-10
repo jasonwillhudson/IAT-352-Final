@@ -102,6 +102,10 @@ $(document).ready(function () {
     });
   });
 
+
+
+
+  
   //=====remove post if user click delete=====//
   $(document).on("click", ".delete-button", function () {
     //store the form data and post it with the request

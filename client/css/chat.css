@@ -6,7 +6,7 @@
 body {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    height: 110vh;
 }
 
 .container {
@@ -15,11 +15,10 @@ body {
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     margin: 25px;
     width:90%;
-    height: 90%;
+    height: 95vh;
     max-width: 1000px;
-    max-height: 600px;
     align-self: center;
-    min-height: 400px;
+    min-height: 500px;
 
 }
 
@@ -76,14 +75,18 @@ body {
 }
 .replies p, .sent p{
     list-style: none;
-    box-shadow: rgba(0, 0, 0, 0.35) 2px 2px 15px;
-    margin: 20px;
-    padding: 15px;
+    border: 1px solid silver;
+    margin: 5px 20px;
+    padding: 5px 15px;
     width: fit-content;
     max-width: 250px;
-    border-radius: 10px;
+    border-radius: 3px;
 }
 
+.contact-title{
+    text-align: center;
+    margin-top: 15px;
+}
 .sent, .replies{
     display: flex;
 }
@@ -92,6 +95,10 @@ body {
     justify-content: flex-end;
 }
 
+.replies p{
+    background-color: black;
+    color: aliceblue;
+}
 button {
     padding: 10px 20px;
 }

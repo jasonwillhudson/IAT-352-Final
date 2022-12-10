@@ -5,7 +5,7 @@ $(document).ready(function(){
 	setInterval(function(){
 		//updateUserList();	
 		updateUnreadMessageCount();	
-	}, 2000);	
+	}, 1000);	
 
     //keep update user chat
 	setInterval(function(){
@@ -67,7 +67,7 @@ function sendMessage(to_user_id) {
 		success:function(response) {
             
             //update the chat status
-			var resp = JSON.stringify(response);			
+			var resp = JSON.parse(response);			
 			$('#conversation').html(resp.conversation);				
 			$(".messages").animate({ scrollTop: $('.messages ul').height() }, "fast");
 		}

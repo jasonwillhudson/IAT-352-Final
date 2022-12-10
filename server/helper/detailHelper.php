@@ -54,7 +54,7 @@ function displayBasicInfo($postID)
         $result .= '<p class="contact"><strong>Phone </strong>' . $phone . '</p>';
         $result .= '<p class="contact"><strong>Email </strong>' . $email . '</p>';
         $result .= '<p class="contact"><strong>City </strong>' . $city . '</p>';
-        if(!empty($_SESSION['email']) && !($_SESSION['email'] == $email)) $result .= '<button id="message">Message Owner</button>';
+        if(!empty($_SESSION['email']) && !($_SESSION['email'] == $email)) $result .= '<a href=../pages/chat.php?contact_email=' . $email . '><button id="message">Message Owner</button></a>';
     }
 
     $result .= '</div></div>';

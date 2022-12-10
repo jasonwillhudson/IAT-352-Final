@@ -111,6 +111,15 @@ class Chat{
 			$conversation .= '</li>';
 		}		
 		$conversation .= '</ul>';
+
+		// change all the unread message from input user to read	
+		$sqlUpdate = "
+			UPDATE ".$this->chatTable." 
+			SET status = '0' 
+			WHERE sender_email = '".$to_user_id."' AND receiver_email = '".$from_user_id."' AND status = '1'";
+		mysqli_query($this->dbConnect, $sqlUpdate);
+
+		
 		return $conversation;
 	}
 
@@ -123,15 +132,7 @@ class Chat{
 			$userSection = '<p>'.$user['email'].'</p>';
 		}		
 		// get user conversation
-		$conversation = $this->getUserChat($from_user_id, $to_user_id);	
-
-
-		// change all the unread message from input user to read	
-		$sqlUpdate = "
-			UPDATE ".$this->chatTable." 
-			SET status = '0' 
-			WHERE sender_email = '".$to_user_id."' AND receiver_email = '".$from_user_id."' AND status = '1'";
-		mysqli_query($this->dbConnect, $sqlUpdate);		
+		$conversation = $this->getUserChat($from_user_id, $to_user_id);			
 	
 		$data = array(
 			"userSection" => $userSection,

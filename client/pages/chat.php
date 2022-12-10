@@ -15,6 +15,7 @@ require "../components/nav.php";
 
 //Detect if any chat is initiated
 $currentSession = "";
+if (!empty($_GET['contact_email'])) $currentSession = trim($_GET['contact_email']);
 ?>
 
 <link rel="stylesheet" href="../css/chat.css">
@@ -25,6 +26,7 @@ $currentSession = "";
         <?php
         echo '<ul>';
 
+        echo '<h2 class="contact-title">Contacts</h2>';
         //import chat class
         include('../../server/helper/Chat.php');
 
@@ -34,14 +36,32 @@ $currentSession = "";
         //get the chat users list
         $chatUsers = $chat->chatUsers($_SESSION['email']);
 
+
+
+
+        //=========if current session is not empty then active this user as the one to contact with=======
+        if ($currentSession != "")
+            echo '<li id="' . $currentSession . '" class="contact active' . '" data-touserid="' . $currentSession . '" data-tousername="' . $currentSession . '">';
+        $contactName = $chat->getUserDetails($currentSession);
+        
+        
+        //display user name
+        foreach ($contactName as $name) {
+            echo '<p class="name">' . $name['name']  . '</p>';
+        }
+
+        echo '</li>';
+
+
+        //=====================display other contacts=================//
         foreach ($chatUsers as $user) {
 
             //prevent showing log in user as a contact 
-            if ($user['sender_email'] == $_SESSION['email']) continue;
+            if ($user['sender_email'] == $_SESSION['email'] || $user['sender_email']==$currentSession) continue;
 
 
             //display the contact side panel elements
-            echo '<li id="' . $user['sender_email'] . '" class="contact ' . ($currentSession == $user['sender_email'] ? "active" : "") . '" data-touserid="' . $user['sender_email'] . '" data-tousername="' . $user['sender_email'] . '">';
+            echo '<li id="' . $user['sender_email'] . '" class="contact ' . '" data-touserid="' . $user['sender_email'] . '" data-tousername="' . $user['sender_email'] . '">';
 
             $unreadCount = $chat->getUnreadMessageCount($user['sender_email'], $_SESSION['email']);
             $username = $chat->getUserDetails($user['sender_email']);
@@ -53,8 +73,6 @@ $currentSession = "";
 
             //display the unread message count
             if (!empty($unreadCount)) echo '<span id="unread_' . str_replace(array("@", "."), array("", ""), $user['sender_email']) . '" class="unread">' . $unreadCount . '</span>';
-
-            echo '</li>';
         }
         echo '</ul>';
 
@@ -82,7 +100,7 @@ $currentSession = "";
 
             <input type="text" class="chatMessage" id="chatMessage" placeholder="Write your message" />
             <button class="submit chatButton" id="chatButton">Send</button>
-            <span id="chatid"></span>
+            <span id="chatid"><?php echo $currentSession;?></span>
 
         </div>
     </div>
