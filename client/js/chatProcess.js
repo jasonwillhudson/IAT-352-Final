@@ -83,7 +83,7 @@ function showUserChat(to_user_id){
 		data:{to_user_id:to_user_id, action:'show_chat'},
 		dataType: "json",
 		success:function(response){
-            console.log("showuserchat" + JSON.stringify(response));
+            //console.log("showuserchat" + JSON.stringify(response));
 			//$('#userSection').html(response.userSection);
 			$('#conversation').html(response.conversation);	
 			$('#unread_'+to_user_id.toString().replace(/@|./g,'')).html('');
@@ -120,7 +120,7 @@ function updateUnreadMessageCount() {
 				data:{to_user_id:to_user_id, action:'update_unread_message'},
 				dataType: "json",
 				success:function(response){	
-                    console.log("unread" + response.count);	
+                    //console.log("unread" + response.count);	
 					if(response.count) {
 						$('#unread_'+to_user_id.toString().replace(/@|./g,'')).html(response.count);	
 					}					

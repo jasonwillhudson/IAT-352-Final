@@ -66,7 +66,7 @@ function getPostsList($filter, $search)
 //======================================================================================//
 
     //add group by clause to the sql query
-    $query .= " GROUP BY post.post_id ";
+    $query .= " GROUP BY post.post_id ORDER BY post.date DESC";
 
 
     //send the query to database to execute and return the result
@@ -196,10 +196,10 @@ function getCollectionList()
     global $db;
 
     //write a query to select the unique post data we need from joined tables
-    $query = "SELECT MAX(post.title), MAX(image_path.image_path), post.post_id FROM post  
+    $query = "SELECT MAX(post.title), MAX(image_path.image_path), MAX(post.date), post.post_id FROM post  
                 INNER JOIN image_path ON post.post_id = image_path.post_id 
                 INNER JOIN collection ON collection.post_id = post.post_id
-                WHERE collector_email = ? GROUP BY post.post_id";
+                WHERE collector_email = ? GROUP BY post.post_id ORDER BY post.date DESC";
 
 
     //send the query to database to execute and return the result
@@ -213,7 +213,7 @@ function getCollectionList()
 
     $stmt->bind_param('s', $_SESSION['email']);
     $stmt->execute();
-    $stmt->bind_result($title, $imagePath, $postID);
+    $stmt->bind_result($title, $imagePath, $date, $postID);
 
     //make each of chat information to html element and send them to ajax to render on the page
     $result = '<div class="post-list">';
@@ -249,7 +249,7 @@ function getMyPost()
     //write a query to select the unique post data we need from joined tables
     $query = "SELECT MAX(post.title), MAX(image_path.image_path), post.post_id FROM post  
                 INNER JOIN image_path ON post.post_id = image_path.post_id 
-                WHERE post.email = ? GROUP BY post.post_id";
+                WHERE post.email = ? GROUP BY post.post_id ORDER BY post.date DESC";
 
 
     //send the query to database to execute and return the result
