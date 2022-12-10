@@ -46,6 +46,10 @@ $(document).ready(function () {
     //store the form data and post it with the request
     var data = new FormData();
 
+    //Add search text into form data
+    data.append("search", $("#search").val());
+
+
     // Add Checked box input to the form data
     $.each($("input[name='media']:checked"), function () {
       data.append("filter[]", $(this).val());

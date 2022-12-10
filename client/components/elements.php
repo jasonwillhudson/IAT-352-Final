@@ -1,7 +1,7 @@
 <?php
 
 //Create a input filed and display on the page
-function makeInput($label, $name, $type, $required = false, $value = "")
+function makeInput($label, $name, $type, $required = false, $value = " ")
 {
 
    strval($value);
@@ -14,7 +14,7 @@ function makeInput($label, $name, $type, $required = false, $value = "")
    if ($type == "textarea")
       echo "<textarea id=\"$name\" name=\"$name\" " . ($required ? " required" : "") . ">$value</textarea></div>";
    else //display the input with the type user chose
-      echo "<input type=\"$type\" id=\"$name\" name=\"$name\" value=\"$value\" " . $requireOption . $decimalOption . "></input></div>";
+      echo "<input type=\"$type\" id=\"$name\" name=\"$name\" value=\"$value\" " . $requireOption . $decimalOption . "/></div>";
    echo "</br>";
 }
 

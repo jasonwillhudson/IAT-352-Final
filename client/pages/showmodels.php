@@ -33,8 +33,12 @@ require "../components/nav.php";
 
 	echo "<form method = post id=\"filter\">";
 
-	echo "<h3>Filter By</h3>";
-
+	echo "<div style='display:flex;'>";
+	makeInput("", "search", "text");
+	//submit
+	echo '<input type="submit" name= "submit" value="Search" style="font-size:15px; width: fit-content; padding: 0 15px; margin-left: 5px;">';
+	echo "</div>";
+	 
 	//Digital Media Section
 	echo "<div class='filter-title-wrap'><input type='checkbox' name='media' id='media'/><span class ='filter-title'>Media Entertainment</span></div>";
 	$arr = array('Casset' => 'casset', 'CD' => 'cd', 'DVD' => 'dvd', 'Blu-Ray' => 'blu-ray', 'Laser Disc' => 'laser-disc');
@@ -54,14 +58,14 @@ require "../components/nav.php";
 
 
 	//submit
-	echo '<input type="submit" name= "submit" value="Filter Result" style="width:130px; font-size: 16px; height:50px; display:flex; justify-content:center; align-self:center; margin-top:25px;">';
+	echo '<input type="submit" name= "submit" value="Filter Result" style="width:100%; font-size: 16px; height:50px; display:flex; justify-content:center; align-self:center; margin-top:25px;">';
 	echo "</form>";
 
 
 	?>
 	<!---------------------------------Display Posts------------>
 	<div class="post-container" id="posts">
-		<?php echo getPostsList([]) ?>
+		<?php echo getPostsList([], "") ?>
 	</div>
 </div>
 <script src="../js/postListProcess.js"></script>

@@ -7,7 +7,9 @@ if (!empty($_POST['action'])) {
 
     //execute get filter result function
     if ($_POST['action'] == 'filterResult') {
-        $filterResult = getPostsList($_POST['filter']);
+        $filter = [];
+        if(!empty($_POST['filter'])) $filter = $_POST['filter'];
+        $filterResult = getPostsList($filter, $_POST['search']);
         echo $filterResult;
     }
 

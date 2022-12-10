@@ -17,7 +17,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 
 //get the list of post data from the database
-function getPostsList($filter)
+function getPostsList($filter, $search)
 {
 
     //check if user log in and get it's email address if so
@@ -48,8 +48,22 @@ function getPostsList($filter)
     //add where clause to the sql query
     if ($sql) {
         $clouse = implode(' OR ', $sql);
-        $query .= ' WHERE ' . $clouse;
+        $query .= ' WHERE (' . $clouse . ') ';
     }
+
+
+//=============================================Search Query==========================//
+    $keywords = [];
+    if (!empty($search)) {
+
+        //split search into a keywords array if search filed not empty
+        $keywords = explode(" ", $search);
+
+        //add search where clause to the query
+        $query .= "AND (title REGEXP '" .  implode('|', $keywords) . "' OR description REGEXP '" . implode('|', $keywords) . "') ";
+    }
+
+//======================================================================================//
 
     //add group by clause to the sql query
     $query .= " GROUP BY post.post_id ";
@@ -311,7 +325,7 @@ function removeRowIn($table, $postID)
 
     global $db;
 
-    $query = "DELETE FROM ". $table . " WHERE post_id = ?";
+    $query = "DELETE FROM " . $table . " WHERE post_id = ?";
 
 
     //send the query to database to execute and return the result
