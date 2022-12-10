@@ -1,5 +1,5 @@
-.active {
-    background-color: black;
+.active{
+    background-color: var(--medium-black);
     color: white;
 }
 
@@ -23,9 +23,9 @@ body {
 }
 
 .unread{
-    background-color: orangered;
+    background-color: rgb(226, 57, 57);
     border-radius: 50px;
-    color: white;
+    color: var(--white);
     padding: 6px;
     justify-self: flex-end;
     font-size: 12px;
@@ -47,13 +47,15 @@ body {
 
 #contacts{
     width: 400px;
-    background-color: darkorange;
+    background-color: var(--light-black);
     display: flex;
     justify-content: center;
 }
 .name{
     width:130px;
     overflow: hidden;
+    font-weight: 600;
+    
 }
 
 .contact:hover {
@@ -85,7 +87,7 @@ body {
 
 .contact-title{
     text-align: center;
-    margin-top: 15px;
+    margin: 30px 0;
 }
 .sent, .replies{
     display: flex;
@@ -96,16 +98,16 @@ body {
 }
 
 .replies p{
-    background-color: black;
-    color: aliceblue;
+    background-color: var(--medium-black) !important;
+    color: var(--white);
 }
 button {
     padding: 10px 20px;
 }
 
 button:hover{
-    background-color: black;
-    color: white;
+    background-color: var(--theme-color);
+    color: var(--white);
     transition: .4s;
 }
 

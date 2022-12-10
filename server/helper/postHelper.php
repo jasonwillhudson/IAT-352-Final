@@ -41,7 +41,7 @@ function getPostsList($filter, $search)
     }
 
     //write a query to select the unique post data we need from joined tables
-    $query = "SELECT MAX(post.title), MAX(image_path.image_path), post.post_id, MAX(member.name), MAX(member.email) FROM post  
+    $query = "SELECT MAX(post.title), MIN(image_path.image_path), post.post_id, MAX(member.name), MAX(member.email) FROM post  
                 INNER JOIN image_path ON post.post_id = image_path.post_id
                 INNER JOIN member ON member.email = post.email ";
 
@@ -196,7 +196,7 @@ function getCollectionList()
     global $db;
 
     //write a query to select the unique post data we need from joined tables
-    $query = "SELECT MAX(post.title), MAX(image_path.image_path), MAX(post.date), post.post_id FROM post  
+    $query = "SELECT MAX(post.title), MIN(image_path.image_path), MAX(post.date), post.post_id FROM post  
                 INNER JOIN image_path ON post.post_id = image_path.post_id 
                 INNER JOIN collection ON collection.post_id = post.post_id
                 WHERE collector_email = ? GROUP BY post.post_id ORDER BY post.date DESC";
@@ -247,7 +247,7 @@ function getMyPost()
     global $db;
 
     //write a query to select the unique post data we need from joined tables
-    $query = "SELECT MAX(post.title), MAX(image_path.image_path), post.post_id FROM post  
+    $query = "SELECT MAX(post.title), MIN(image_path.image_path), post.post_id FROM post  
                 INNER JOIN image_path ON post.post_id = image_path.post_id 
                 WHERE post.email = ? GROUP BY post.post_id ORDER BY post.date DESC";
 

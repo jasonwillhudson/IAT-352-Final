@@ -1,3 +1,13 @@
+
+:root {
+  --black: #222;
+  --medium-black: rgb(68,68,68);
+  --light-black:#dbd9d2;
+  --white: white;
+  --theme-color: rgb(68,68,68);
+}
+
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -5,6 +15,9 @@
   font-family:Arial, Helvetica, sans-serif;
 }
 
+body{
+  color: var(--theme-color);
+}
 h1 {
   text-align: center;
   margin-bottom: 40px;
@@ -45,27 +58,27 @@ textarea {
   font-size: 15px;
   font-weight: 500;
   resize: none;
-  color: rgb(75, 99, 90);
+  color: var(--theme-color);
 }
 
 input[type="submit"] {
   padding: 15px 40px;
   width: 100%;
   font-size: 20px;
-  background-color: rgb(75, 99, 90);
+  background-color: var(--theme-color);
   color: white;
   cursor: pointer;
   transition: 0.3s;
-  border: 1px solid rgb(75, 99, 90);
+  border: 1px solid var(--theme-color);;
 }
 input[type="submit"]:hover {
-  color: rgb(75, 99, 90);
-  background-color: white;
+  color: var(--theme-color);;
+  background-color: var(--white);;
 }
 
 input:focus,
 textarea:focus {
-  outline-color: rgb(75, 99, 90);
+  outline-color: var(--theme-color);;
 }
 
 textarea {
@@ -110,9 +123,9 @@ img {
   border-radius: 50%;
   top: -3px;
   right: -3px;
-  background: white;
+  background: var(--white);
   text-align: center;
-  color: black;
+  color: var(--medium-black);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -123,7 +136,7 @@ img {
 /* nav bar*/
 
 .nav-list {
-	background-color: rgb(0, 0, 0);
+	background-color: var(--white);
 	margin: 0;
 	padding: 1rem 0;
 	display: flex;
@@ -134,12 +147,12 @@ img {
 .nav-items {
 	list-style: none;
 	margin: 0 15px;
-	color: beige;
+	color: var(--white);
 }
 
 .nav-items a {
 	text-decoration: none;
-	color: white;
+	color: var(--black);
 }
 .nav-items:first-child {
 	margin-right: auto;
@@ -148,7 +161,7 @@ img {
 
 .nav-btn {
 	font-size: 15px;
-	background: rgb(165, 117, 210);
+	background: var(--theme-color);
 	border: none;
 	outline: none;
 	padding: 10px 15px;
@@ -157,17 +170,17 @@ img {
 }
 
 .nav-btn:hover {
-	background-color: blueviolet;
-	color: beige;
+	background-color: var(--theme-color);
+	color: var(--white);
 }
 
 .nav-items a:hover {
-	color: blueviolet;
+	color: var(--theme-color);
 }
 
 #footer {
-  background-color: black;
-  color: white;
+  background-color: var(--medium-black);;
+  color: var(--white);
   margin-top: 30px;
   text-align: center;
   padding: 30px;
