@@ -169,7 +169,7 @@ function removeFromCollection($postID)
 {
     global $db;
 
-    //write a query to add post to collection
+    //write a query to delete post to collection
     $query = "DELETE FROM collection WHERE collector_email = ? AND post_id = ?";
 
     if (empty($_SESSION['email'])) {
