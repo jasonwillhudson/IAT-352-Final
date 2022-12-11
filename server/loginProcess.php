@@ -9,7 +9,7 @@ session_start();
 $db =  connectToDB('localhost', 'root', '', 'svap');
 
 //write a query to get the password from database
-$query = "SELECT password FROM member WHERE email = ? AND NOT isBanned";
+$query = "SELECT password FROM member WHERE email = ? ";
 
 //send the query to database, execute and then get the result
 $stmt = $db->prepare($query);
