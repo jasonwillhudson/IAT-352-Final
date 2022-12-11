@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.1
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- 主机： localhost
--- 生成日期： 2022-12-10 14:49:15
--- 服务器版本： 10.4.21-MariaDB
--- PHP 版本： 8.0.10
+-- Host: 127.0.0.1
+-- Generation Time: Dec 11, 2022 at 03:23 AM
+-- Server version: 10.4.24-MariaDB
+-- PHP Version: 8.1.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 数据库： `svap`
+-- Database: `svap`
 --
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `collection`
+-- Table structure for table `collection`
 --
 
 CREATE TABLE `collection` (
@@ -34,7 +34,7 @@ CREATE TABLE `collection` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- 转存表中的数据 `collection`
+-- Dumping data for table `collection`
 --
 
 INSERT INTO `collection` (`collector_email`, `post_id`, `collection_id`) VALUES
@@ -43,7 +43,7 @@ INSERT INTO `collection` (`collector_email`, `post_id`, `collection_id`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `image_path`
+-- Table structure for table `image_path`
 --
 
 CREATE TABLE `image_path` (
@@ -53,7 +53,7 @@ CREATE TABLE `image_path` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- 转存表中的数据 `image_path`
+-- Dumping data for table `image_path`
 --
 
 INSERT INTO `image_path` (`email`, `post_id`, `image_path`) VALUES
@@ -82,7 +82,7 @@ INSERT INTO `image_path` (`email`, `post_id`, `image_path`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `member`
+-- Table structure for table `member`
 --
 
 CREATE TABLE `member` (
@@ -95,7 +95,7 @@ CREATE TABLE `member` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- 转存表中的数据 `member`
+-- Dumping data for table `member`
 --
 
 INSERT INTO `member` (`email`, `name`, `password`, `phone`, `city`, `isBanned`) VALUES
@@ -107,7 +107,7 @@ INSERT INTO `member` (`email`, `name`, `password`, `phone`, `city`, `isBanned`) 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `message`
+-- Table structure for table `message`
 --
 
 CREATE TABLE `message` (
@@ -120,7 +120,7 @@ CREATE TABLE `message` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- 转存表中的数据 `message`
+-- Dumping data for table `message`
 --
 
 INSERT INTO `message` (`time_stamp`, `content`, `sender_email`, `message_id`, `receiver_email`, `status`) VALUES
@@ -129,7 +129,7 @@ INSERT INTO `message` (`time_stamp`, `content`, `sender_email`, `message_id`, `r
 -- --------------------------------------------------------
 
 --
--- 表的结构 `post`
+-- Table structure for table `post`
 --
 
 CREATE TABLE `post` (
@@ -139,31 +139,29 @@ CREATE TABLE `post` (
   `date` timestamp NOT NULL DEFAULT current_timestamp(),
   `email` varchar(50) NOT NULL,
   `category` varchar(50) NOT NULL,
-  `isReported` tinyint(1) NOT NULL DEFAULT 0,
-  `isTraded` tinyint(1) NOT NULL DEFAULT 0,
   `value` decimal(20,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- 转存表中的数据 `post`
+-- Dumping data for table `post`
 --
 
-INSERT INTO `post` (`post_id`, `title`, `description`, `date`, `email`, `category`, `isReported`, `isTraded`, `value`) VALUES
-(1, ' Lots of Lego - New and Used', 'I have a fair variety of items for trade/barter or sale, Items available are shown in the pictures and/or are listed in other ads', '2022-12-10 13:13:53', '1762649548@qq.com', 'lego', 0, 0, '100.00'),
-(2, 'Toshiba 15.6\" laptop 6th gen', 'Toshiba Tecra A50-C laptop\r\n6th generation i5-6200 CPU\r\n8GB memory, 250GB SSD\r\n15.6-inch, 1366x768 HD Screen\r\nOffice 2016 installed\r\nGreat condition, everything works and battery is very good', '2022-12-10 13:14:56', '1762649548@qq.com', 'laptop', 0, 0, '220.00'),
-(3, 'phone for sale/trade', 'Samsung ace II.', '2022-12-10 13:17:18', '1762649548@qq.com', 'phone', 0, 0, '90.00'),
-(4, 'Two tone Men\'s Rolex Submariner', 'Selling a Y series serial# Two tone Rolex Submariner.\r\nExcellent condition, full links, no sag\r\nBox\'s, marketing papers, etc.', '2022-12-10 13:20:30', '1762649548@qq.com', 'collectible', 0, 0, '14000.00'),
-(5, 'Black Speakers', 'ADAM Audio F5 Active Nearfield Monitors (Pair) Black Speakers\r\nWork good.', '2022-12-10 13:26:18', '1762649548@qq.com', 'speaker', 0, 0, '350.00'),
-(6, 'Blaster Radio', 'JVC Model PC- 110 portable stereo system with CD and dual cassette players. Excellent condition and perfect working order. Comes with remote, price is firm.', '2022-12-10 13:28:56', 'jason@qq.com', 'speaker', 0, 0, '100.00'),
-(7, 'Vintage Wrong Way wooden road sign', 'Vintage Wrong Way wooden road sign 40 x 36 inches.\r\n\r\nGreat collectible, movie prop, Man Cave\r\n\r\nAsking $40.00 obo\r\n\r\nThank you for looking and please contact me with any questions :^)', '2022-12-10 13:30:41', 'jason@qq.com', 'collectible', 0, 0, '40.00'),
-(8, 'Brass Letter Opener', 'Brass letter opener, excellent condition, looks great, 6\" long, great gift idea or add to your collection, $10', '2022-12-10 13:31:54', 'jason@qq.com', 'collectible', 0, 0, '10.00'),
-(9, 'The Compleat Beatles', 'The Compleat Beatles VHS+The Beatles 40th Anniversary Collectors Edition Magazine\r\n$17 for all OR $9 each', '2022-12-10 13:40:02', 'yanhan@qq.com', 'collectible', 0, 0, '17.00'),
-(10, 'Sega Genesis Arcade Power Stick', 'Sega Genesis Arcade Power Stick in excellent condition and perfect working order. Price is firm.', '2022-12-10 13:41:29', 'yanhan@qq.com', 'game-console', 0, 0, '40.00');
+INSERT INTO `post` (`post_id`, `title`, `description`, `date`, `email`, `category`, `value`) VALUES
+(1, ' Lots of Lego - New and Used', 'I have a fair variety of items for trade/barter or sale, Items available are shown in the pictures and/or are listed in other ads', '2022-12-10 13:13:53', '1762649548@qq.com', 'lego', '100.00'),
+(2, 'Toshiba 15.6\" laptop 6th gen', 'Toshiba Tecra A50-C laptop\r\n6th generation i5-6200 CPU\r\n8GB memory, 250GB SSD\r\n15.6-inch, 1366x768 HD Screen\r\nOffice 2016 installed\r\nGreat condition, everything works and battery is very good', '2022-12-10 13:14:56', '1762649548@qq.com', 'laptop', '220.00'),
+(3, 'phone for sale/trade', 'Samsung ace II.', '2022-12-10 13:17:18', '1762649548@qq.com', 'phone', '90.00'),
+(4, 'Two tone Men\'s Rolex Submariner', 'Selling a Y series serial# Two tone Rolex Submariner.\r\nExcellent condition, full links, no sag\r\nBox\'s, marketing papers, etc.', '2022-12-10 13:20:30', '1762649548@qq.com', 'collectible', '14000.00'),
+(5, 'Black Speakers', 'ADAM Audio F5 Active Nearfield Monitors (Pair) Black Speakers\r\nWork good.', '2022-12-10 13:26:18', '1762649548@qq.com', 'speaker', '350.00'),
+(6, 'Blaster Radio', 'JVC Model PC- 110 portable stereo system with CD and dual cassette players. Excellent condition and perfect working order. Comes with remote, price is firm.', '2022-12-10 13:28:56', 'jason@qq.com', 'speaker', '100.00'),
+(7, 'Vintage Wrong Way wooden road sign', 'Vintage Wrong Way wooden road sign 40 x 36 inches.\r\n\r\nGreat collectible, movie prop, Man Cave\r\n\r\nAsking $40.00 obo\r\n\r\nThank you for looking and please contact me with any questions :^)', '2022-12-10 13:30:41', 'jason@qq.com', 'collectible', '40.00'),
+(8, 'Brass Letter Opener', 'Brass letter opener, excellent condition, looks great, 6\" long, great gift idea or add to your collection, $10', '2022-12-10 13:31:54', 'jason@qq.com', 'collectible', '10.00'),
+(9, 'The Compleat Beatles', 'The Compleat Beatles VHS+The Beatles 40th Anniversary Collectors Edition Magazine\r\n$17 for all OR $9 each', '2022-12-10 13:40:02', 'yanhan@qq.com', 'collectible', '17.00'),
+(10, 'Sega Genesis Arcade Power Stick', 'Sega Genesis Arcade Power Stick in excellent condition and perfect working order. Price is firm.', '2022-12-10 13:41:29', 'yanhan@qq.com', 'game-console', '40.00');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `want_to_trade`
+-- Table structure for table `want_to_trade`
 --
 
 CREATE TABLE `want_to_trade` (
@@ -173,7 +171,7 @@ CREATE TABLE `want_to_trade` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- 转存表中的数据 `want_to_trade`
+-- Dumping data for table `want_to_trade`
 --
 
 INSERT INTO `want_to_trade` (`email`, `post_id`, `category`) VALUES
@@ -204,76 +202,76 @@ INSERT INTO `want_to_trade` (`email`, `post_id`, `category`) VALUES
 ('yanhan@qq.com', 10, 'phone');
 
 --
--- 转储表的索引
+-- Indexes for dumped tables
 --
 
 --
--- 表的索引 `collection`
+-- Indexes for table `collection`
 --
 ALTER TABLE `collection`
   ADD PRIMARY KEY (`collection_id`);
 
 --
--- 表的索引 `image_path`
+-- Indexes for table `image_path`
 --
 ALTER TABLE `image_path`
   ADD KEY `post_id` (`post_id`),
   ADD KEY `email` (`email`);
 
 --
--- 表的索引 `member`
+-- Indexes for table `member`
 --
 ALTER TABLE `member`
   ADD PRIMARY KEY (`email`);
 
 --
--- 表的索引 `message`
+-- Indexes for table `message`
 --
 ALTER TABLE `message`
   ADD PRIMARY KEY (`message_id`);
 
 --
--- 表的索引 `post`
+-- Indexes for table `post`
 --
 ALTER TABLE `post`
   ADD PRIMARY KEY (`post_id`),
   ADD KEY `email` (`email`);
 
 --
--- 在导出的表使用AUTO_INCREMENT
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- 使用表AUTO_INCREMENT `collection`
+-- AUTO_INCREMENT for table `collection`
 --
 ALTER TABLE `collection`
   MODIFY `collection_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- 使用表AUTO_INCREMENT `message`
+-- AUTO_INCREMENT for table `message`
 --
 ALTER TABLE `message`
   MODIFY `message_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- 使用表AUTO_INCREMENT `post`
+-- AUTO_INCREMENT for table `post`
 --
 ALTER TABLE `post`
   MODIFY `post_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- 限制导出的表
+-- Constraints for dumped tables
 --
 
 --
--- 限制表 `image_path`
+-- Constraints for table `image_path`
 --
 ALTER TABLE `image_path`
   ADD CONSTRAINT `image_path_ibfk_1` FOREIGN KEY (`post_id`) REFERENCES `post` (`post_id`),
   ADD CONSTRAINT `image_path_ibfk_2` FOREIGN KEY (`email`) REFERENCES `member` (`email`);
 
 --
--- 限制表 `post`
+-- Constraints for table `post`
 --
 ALTER TABLE `post`
   ADD CONSTRAINT `post_ibfk_1` FOREIGN KEY (`email`) REFERENCES `member` (`email`);
